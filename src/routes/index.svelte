@@ -1,15 +1,4 @@
 <style>
-  main {
-    font-family: "Montserrat", sans-serif;
-    height: 100vh;
-    width: 100vw;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-    background-color: hsl(0, 79%, 66%);
-  }
-
   h1 {
     font-size: 2rem;
     font-weight: 600;
@@ -32,7 +21,9 @@
   }
 </style>
 
-<main>
-  <h1>M ❤️ V</h1>
-  <h1>Summer 2020</h1>
-</main>
+<svelte:head>
+  <title>M ❤️ V</title>
+</svelte:head>
+
+<h1>M ❤️ V</h1>
+<h1>Summer 2020</h1>
