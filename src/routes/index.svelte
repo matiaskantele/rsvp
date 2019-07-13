@@ -1,3 +1,8 @@
+<script>
+  import RSVPForm from "../components/RSVPForm.svelte";
+  import Map from "../components/Map.svelte";
+</script>
+
 <style>
   h1 {
     font-size: 2rem;
@@ -10,7 +15,17 @@
     transition-duration: 0.5s;
   }
 
-  main > h1:first-child {
+  .hero {
+    height: 100vh;
+    width: 100vw;
+    background-color: hsl(0, 79%, 66%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .hero > h1:first-child {
     margin-bottom: 1rem;
   }
 
@@ -25,5 +40,9 @@
   <title>M ❤️ V</title>
 </svelte:head>
 
-<h1>M ❤️ V</h1>
-<h1>Summer 2020</h1>
+<div class="hero">
+  <h1>M ❤️ V</h1>
+  <h1>Summer 2020</h1>
+</div>
+<RSVPForm />
+<Map />
