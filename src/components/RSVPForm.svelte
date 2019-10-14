@@ -5,13 +5,22 @@
 
   function submitForm() {
     const selections = {
-      attending: attending
+      attending: attending,
+      working: true
     };
+
+    function encode(data) {
+      return Object.keys(data)
+        .map(
+          key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key])
+        )
+        .join("&");
+    }
 
     fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: JSON.stringify({ "form-name": "rsvp", ...selections })
+      body: encode({ "form-name": "rsvp", ...selections })
     })
       .then(() => {
         goto("/thank-you");
