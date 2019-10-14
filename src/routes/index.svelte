@@ -29,10 +29,6 @@
     margin-bottom: 1rem;
   }
 
-  #id {
-    display: none;
-  }
-
   @media (min-width: 920px) {
     h1 {
       font-size: 3rem;
@@ -50,4 +46,3 @@
 </div>
 <RSVPForm />
 <Map />
-<a id="hidden" aria-hidden="true" href="/thank-you">Thank You!</a>

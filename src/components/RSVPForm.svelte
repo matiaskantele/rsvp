@@ -1,5 +1,23 @@
 <script>
+  import { goto } from "@sapper/app";
+
   let attending = "no";
+
+  function submitForm() {
+    const selections = {
+      attending: attending
+    };
+
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: JSON.stringify({ "form-name": "rsvp", ...selections })
+    })
+      .then(() => {
+        goto("/thank-you");
+      })
+      .catch(error => alert(error));
+  }
 </script>
 
 <style>
@@ -8,12 +26,22 @@
     width: 100vw;
     background-color: darkolivegreen;
   }
+
+  .hidden {
+    display: none;
+  }
 </style>
 
-<form name="rsvp" method="POST" data-netlify="true" action="/thank-you">
+<form on:submit|preventDefault netlify netlify-honeypot="bot-field">
+  <p class="hidden">
+    <label>
+      Don’t fill this out if you're human:
+      <input name="bot-field" />
+    </label>
+  </p>
   <label for="negative">No</label>
   <input type="radio" bind:group={attending} value="no" id="negative" />
   <label for="affirmative">Yes</label>
   <input type="radio" bind:group={attending} value="yes" id="affirmative" />
-  <button type="submit">RSVP</button>
+  <button on:click={submitForm}>RSVP</button>
 </form>
