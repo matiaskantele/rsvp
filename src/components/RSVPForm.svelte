@@ -19,7 +19,7 @@
     fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: encode({ ...selections })
+      body: encode({ "form-name": "rsvp", ...selections })
     })
       .then(res => {
         if (!res.ok) {
@@ -45,9 +45,9 @@
 
 <form
   on:submit|preventDefault={submitForm}
+  name="rsvp"
   netlify
   netlify-honeypot="bot-field">
-  <input type="hidden" name="form-name" value="rsvp" />
   <p class="hidden">
     <label>
       Don’t fill this out if you're human:
