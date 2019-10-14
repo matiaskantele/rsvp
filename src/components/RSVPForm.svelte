@@ -5,9 +5,7 @@
 
   function submitForm() {
     const selections = {
-      "form-name": "rsvp",
-      attending: attending,
-      working: true
+      attending: attending
     };
 
     function encode(data) {
@@ -23,10 +21,13 @@
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: encode({ ...selections })
     })
-      .then(() => {
+      .then(res => {
+        if (!res.ok) {
+          throw new Error("An error occurred, please try again!");
+        }
         goto("/thank-you");
       })
-      .catch(error => alert(error));
+      .catch(error => console.log(error));
   }
 </script>
 
@@ -42,7 +43,11 @@
   }
 </style>
 
-<form on:submit|preventDefault netlify netlify-honeypot="bot-field">
+<form
+  on:submit|preventDefault={submitForm}
+  netlify
+  netlify-honeypot="bot-field">
+  <input type="hidden" name="form-name" value="rsvp" />
   <p class="hidden">
     <label>
       Don’t fill this out if you're human:
@@ -63,5 +68,5 @@
     name="attending"
     value="yes"
     id="affirmative" />
-  <button on:click={submitForm}>RSVP</button>
+  <button type="submit">RSVP</button>
 </form>
