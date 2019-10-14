@@ -5,6 +5,7 @@
 
   function submitForm() {
     const selections = {
+      "form-name": "rsvp",
       attending: attending,
       working: true
     };
@@ -20,7 +21,7 @@
     fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: encode({ "form-name": "rsvp", ...selections })
+      body: encode({ ...selections })
     })
       .then(() => {
         goto("/thank-you");
@@ -49,8 +50,18 @@
     </label>
   </p>
   <label for="negative">No</label>
-  <input type="radio" bind:group={attending} value="no" id="negative" />
+  <input
+    type="radio"
+    bind:group={attending}
+    name="attending"
+    value="no"
+    id="negative" />
   <label for="affirmative">Yes</label>
-  <input type="radio" bind:group={attending} value="yes" id="affirmative" />
+  <input
+    type="radio"
+    bind:group={attending}
+    name="attending"
+    value="yes"
+    id="affirmative" />
   <button on:click={submitForm}>RSVP</button>
 </form>
