@@ -9,7 +9,7 @@
     font-weight: 600;
     margin: 0;
     color: hsl(0, 0%, 100%);
-    text-shadow: 5px 5px 0 rgba(0, 0, 0, 0.7);
+    text-shadow: 0.5rem 0.5rem 0 rgba(0, 0, 0, 0.7);
     transform: skew(0, -6.7deg);
     transition-property: font-size;
     transition-duration: 0.5s;
