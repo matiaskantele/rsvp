@@ -10,6 +10,7 @@
     flex-direction: column;
     justify-content: center;
     text-align: center;
+    background-image: url("/background.png");
   }
 </style>
 

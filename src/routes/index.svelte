@@ -37,7 +37,7 @@
 </style>
 
 <svelte:head>
-  <title>M ❤️ V</title>
+  <title>V ❤️ M</title>
 </svelte:head>
 
 <div class="hero">
