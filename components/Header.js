@@ -1,8 +1,9 @@
-import Nav from "./Nav";
 import Link from "next/link";
 import Router from "next/router";
 import NProgress from "nprogress";
 import styled from "styled-components";
+
+import Nav from "./Nav";
 
 Router.onRouteChangeStart = () => NProgress.start();
 Router.onRouteChangeComplete = () => NProgress.done();
