@@ -1,7 +1,7 @@
 import Document from "next/document";
 import { ServerStyleSheet } from "styled-components";
 
-export default class DocumentInit extends Document {
+class DocumentInit extends Document {
   static async getInitialProps(ctx) {
     const sheet = new ServerStyleSheet();
 
@@ -18,3 +18,5 @@ export default class DocumentInit extends Document {
     };
   }
 }
+
+export default DocumentInit;

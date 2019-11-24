@@ -4,7 +4,7 @@ import "../common/i18n";
 
 import Page from "../components/Page";
 
-export default class AppInit extends App {
+class AppInit extends App {
   render() {
     const { Component, pageProps } = this.props;
     return (
@@ -14,3 +14,5 @@ export default class AppInit extends App {
     );
   }
 }
+
+export default AppInit;
