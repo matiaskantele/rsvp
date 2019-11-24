@@ -2,8 +2,6 @@ import React from "react";
 import Head from "next/head";
 import { useTranslation } from "react-i18next";
 
-import Nav from "../components/nav";
-
 const Home = () => {
   const { t } = useTranslation();
   return (
@@ -12,8 +10,6 @@ const Home = () => {
         <title>{t("title")}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <Nav />
 
       <div className="hero">
         <h1 className="title">{t("vikki")}</h1>
