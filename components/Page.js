@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 
 import Meta from "./Meta";
 import Header from "./Header";
@@ -52,19 +52,15 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-class Page extends Component {
-  render() {
-    return (
-      <ThemeProvider theme={theme}>
-        <StyledPage>
-          <GlobalStyle />
-          <Meta />
-          <Header />
-          <Inner>{this.props.children}</Inner>
-        </StyledPage>
-      </ThemeProvider>
-    );
-  }
-}
+const Page = props => (
+  <ThemeProvider theme={theme}>
+    <StyledPage>
+      <GlobalStyle />
+      <Meta />
+      <Header />
+      <Inner>{props.children}</Inner>
+    </StyledPage>
+  </ThemeProvider>
+);
 
 export default Page;
