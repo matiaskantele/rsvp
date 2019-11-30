@@ -13,11 +13,11 @@ const Inner = styled.div`
   padding: 2rem;
 `;
 
-const Page = props => (
+const Page = ({ route, children }) => (
   <StyledPage>
-    <Meta />
+    <Meta route={route} />
     <Header />
-    <Inner>{props.children}</Inner>
+    <Inner>{children}</Inner>
   </StyledPage>
 );
 

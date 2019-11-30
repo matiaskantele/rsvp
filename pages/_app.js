@@ -6,7 +6,11 @@ import Page from "../components/Page";
 
 class AppInit extends App {
   render() {
-    const { Component, pageProps } = this.props;
+    const {
+      Component,
+      pageProps,
+      router: { route },
+    } = this.props;
 
     const theme = {
       red: "#FF0000",
@@ -15,7 +19,7 @@ class AppInit extends App {
       lightgrey: "#E1E1E1",
       offWhite: "#EDEDED",
       maxWidth: "1000px",
-      bs: "0 12px 24px 0 hsla(0, 0%, 0%, 0.09)"
+      bs: "0 12px 24px 0 hsla(0, 0%, 0%, 0.09)",
     };
 
     const GlobalStyle = createGlobalStyle`
@@ -48,7 +52,7 @@ class AppInit extends App {
     return (
       <ThemeProvider theme={theme}>
         <GlobalStyle />
-        <Page>
+        <Page route={route}>
           <Component {...pageProps} />
         </Page>
       </ThemeProvider>

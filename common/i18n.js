@@ -7,21 +7,25 @@ import LanguageDetector from "i18next-browser-languagedetector";
 const resources = {
   en: {
     translation: {
-      title: "V❤️M",
-      vikki: "Hello Vikki!"
-    }
+      "/info": "Info",
+      "/rsvp": "RSVP",
+      "/": "V❤️M",
+      vikki: "Hello Vikki!",
+    },
   },
   fi: {
     translation: {
-      vikki: "Moi Vikki!"
-    }
+      vikki: "Moi Vikki!",
+    },
   },
   bg: {
     translation: {
+      "/info": "информация",
+      "/rsvp": "RSVP",
       title: "в❤️м",
-      vikki: "здравей вики!"
-    }
-  }
+      vikki: "здравей вики!",
+    },
+  },
 };
 
 const detection = {
@@ -41,7 +45,7 @@ const detection = {
   // cookieDomain: 'myDomain',
 
   // only detect languages that are in the whitelist
-  checkWhitelist: true
+  checkWhitelist: true,
 };
 
 i18n
@@ -57,8 +61,8 @@ i18n
     keySeparator: false, // we do not use keys in form messages.welcome
 
     interpolation: {
-      escapeValue: false // react already safes from xss
-    }
+      escapeValue: false, // react already safes from xss
+    },
   });
 
 export default i18n;

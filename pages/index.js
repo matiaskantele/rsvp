@@ -5,11 +5,6 @@ const Home = () => {
   const { t } = useTranslation();
   return (
     <div>
-      <Head>
-        <title>{t("title")}</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
       <div className="hero">
         <h1 className="title">{t("vikki")}</h1>
         <p className="description">
