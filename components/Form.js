@@ -21,7 +21,7 @@ const onSubmit = values => {
     meal: values.meal,
   };
   console.log(payload);
-  fetch("/rsvp", {
+  fetch("/", {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
     body: encode({ "form-name": "rsvp", ...payload }),
@@ -33,7 +33,6 @@ const onSubmit = values => {
 const rsvpForm = props => {
   const formik = useFormik({
     initialValues: {
-      "bot-field": "",
       name: "",
       meal: "MEAT",
     },
@@ -43,14 +42,7 @@ const rsvpForm = props => {
   const { t } = useTranslation();
 
   return (
-    <Form
-      name="rsvp"
-      data-netlify="true"
-      data-netlify-honeypot="bot-field"
-      onSubmit={formik.handleSubmit}
-    >
-      <input type="hidden" name="form-name" value="rsvp" />
-      <input name="bot-field" onChange={formik.handleChange} />
+    <Form name="rsvp" data-netlify="true" onSubmit={formik.handleSubmit}>
       <Label htmlFor="name">Name</Label>
       <Input
         name="name"
