@@ -42,7 +42,7 @@ const rsvpForm = props => {
   const { t } = useTranslation();
 
   return (
-    <Form netlify netlify-honeypot="bot-field" onSubmit={formik.handleSubmit}>
+    <Form name="rsvp" netlify onSubmit={formik.handleSubmit}>
       <Label htmlFor="name">Name</Label>
       <Input
         name="name"
