@@ -15,7 +15,7 @@ const LanguageSelect = () => {
       className="btn"
       onClick={() => i18n.changeLanguage(lang)}
     >
-      {lang.toUpperCase()}
+      {lang}
     </LanguageButton>
   ));
 
