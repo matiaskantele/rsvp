@@ -16,11 +16,11 @@ const encode = data => {
 };
 
 const onSubmit = values => {
-  console.log(values);
   const payload = {
     name: values.name,
     meal: values.meal,
   };
+  console.log(payload);
   fetch("/", {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -42,7 +42,7 @@ const rsvpForm = props => {
   const { t } = useTranslation();
 
   return (
-    <Form onSubmit={formik.handleSubmit}>
+    <Form netlify netlify-honeypot="bot-field" onSubmit={formik.handleSubmit}>
       <Label htmlFor="name">Name</Label>
       <Input
         name="name"
