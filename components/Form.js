@@ -33,6 +33,7 @@ const onSubmit = values => {
 const rsvpForm = props => {
   const formik = useFormik({
     initialValues: {
+      "bot-field": "",
       name: "",
       meal: "MEAT",
     },
@@ -42,8 +43,14 @@ const rsvpForm = props => {
   const { t } = useTranslation();
 
   return (
-    <Form name="rsvp" netlify onSubmit={formik.handleSubmit}>
+    <Form
+      name="rsvp"
+      data-netlify="true"
+      data-netlify-honeypot="bot-field"
+      onSubmit={formik.handleSubmit}
+    >
       <input type="hidden" name="form-name" value="rsvp" />
+      <input name="bot-field" onChange={formik.handleChange} />
       <Label htmlFor="name">Name</Label>
       <Input
         name="name"
