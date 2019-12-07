@@ -21,7 +21,7 @@ const onSubmit = values => {
     meal: values.meal,
   };
   console.log(payload);
-  fetch("/", {
+  fetch("/rsvp", {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
     body: encode({ "form-name": "rsvp", ...payload }),
@@ -43,6 +43,7 @@ const rsvpForm = props => {
 
   return (
     <Form name="rsvp" netlify onSubmit={formik.handleSubmit}>
+      <input type="hidden" name="form-name" value="rsvp" />
       <Label htmlFor="name">Name</Label>
       <Input
         name="name"
