@@ -18,7 +18,8 @@ class AppInit extends App {
       grey: "#3A3A3A",
       lightgrey: "#E1E1E1",
       offWhite: "#EDEDED",
-      maxWidth: "1000px",
+      gold: "#CA9E46",
+      maxWidth: "800px",
       bs: "0 12px 24px 0 hsla(0, 0%, 0%, 0.09)",
     };
 
@@ -28,6 +29,7 @@ class AppInit extends App {
       src: url('radnikanext-medium-webfont.woff2') format('woff2');
       font-weight: normal;
       font-style: normal;
+      font-display: swap;
     }
     html {
       box-sizing: border-box;
@@ -40,12 +42,18 @@ class AppInit extends App {
       padding: 0;
       margin: 0;
       font-size: 1.5rem;
+      font-weight: 500;
       line-height: 2;
-      font-family: 'radnika_next';
+      font-family: 'Montserrat';
+      height: 100vh;
+      overflow-x: hidden;
     }
     a {
       text-decoration: none;
       color: ${props => props.theme.black};
+    }
+    h1 {
+      font-family: 'Marck Script', cursive;
     }
   `;
 
