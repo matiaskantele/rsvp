@@ -11,11 +11,19 @@ const resources = {
       "/rsvp": "RSVP",
       "/": "V❤️M",
       vikki: "Hello Vikki!",
+      personalInfo: "Personal Information",
+      name: "Name",
+      menuPreference: "Menu Preference",
+      submitRsvp: "Submit RSVP",
     },
   },
   fi: {
     translation: {
       vikki: "Moi Vikki!",
+      personalInfo: "Henkilötiedot",
+      name: "Nimi",
+      menuPreference: "Ruokatoive",
+      submitRsvp: "Lähetä RSVP",
     },
   },
   bg: {
@@ -24,6 +32,10 @@ const resources = {
       "/rsvp": "RSVP",
       title: "в❤️м",
       vikki: "здравей вики!",
+      personalInfo: "Лична информация",
+      name: "име",
+      menuPreference: "Предпочитания за менюто",
+      submitRsvp: "Изпращане RSVP",
     },
   },
 };

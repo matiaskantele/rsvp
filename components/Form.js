@@ -2,11 +2,24 @@ import { useTranslation } from "react-i18next";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
-import { Form, Label, Input, ErrorMessage, Button } from "./styles/FormStyles";
+import {
+  FormGrid,
+  GridSeparator,
+  LeftSeparator,
+  RightSeparator,
+  GridItem,
+  Label,
+  Input,
+  ErrorMessage,
+  MenuGroup,
+  MenuItem,
+  Button,
+  LoadingHeart,
+} from "./styles/FormStyles";
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required("Who dis?"),
-  meal: Yup.string(),
+  menu: Yup.string(),
 });
 
 const encode = data => {
@@ -18,9 +31,9 @@ const encode = data => {
 const onSubmit = values => {
   const payload = {
     name: values.name,
-    meal: values.meal,
+    menu: values.menu,
   };
-  console.log(payload);
+  console.log(values);
   fetch("/", {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -30,31 +43,96 @@ const onSubmit = values => {
     .catch(error => console.log(error));
 };
 
+const Separator = props => (
+  <>
+    <LeftSeparator />
+    <h1>{props.children}</h1>
+    <RightSeparator />
+  </>
+);
+
+const Loading = props => (
+  <LoadingHeart>
+    <div />
+  </LoadingHeart>
+);
+
 const rsvpForm = props => {
   const formik = useFormik({
     initialValues: {
       name: "",
-      meal: "MEAT",
+      menu: "",
     },
     validationSchema: validationSchema,
     onSubmit: onSubmit,
+    onChange: () => console.log(values),
   });
   const { t } = useTranslation();
 
   return (
-    <Form name="rsvp" data-netlify="true" onSubmit={formik.handleSubmit}>
-      <Label htmlFor="name">Name</Label>
-      <Input
-        name="name"
-        type="text"
-        value={formik.values.name}
-        onChange={formik.handleChange}
-      />
-      {formik.errors.name && <ErrorMessage>{formik.errors.name}</ErrorMessage>}
-      <Button type="submit" disabled={formik.isSubmitting}>
-        {formik.isSubmitting ? `Submitting...` : `Submit`}
-      </Button>
-    </Form>
+    <FormGrid name="rsvp" data-netlify="true" onSubmit={formik.handleSubmit}>
+      <GridSeparator>
+        <Separator>{t("personalInfo")}</Separator>
+      </GridSeparator>
+      <GridItem>
+        <Label htmlFor="name">{t("name")}</Label>
+        <Input
+          type="text"
+          name="name"
+          id="name"
+          value={formik.values.name}
+          onChange={formik.handleChange}
+        />
+        {formik.errors.name && (
+          <ErrorMessage>{formik.errors.name}</ErrorMessage>
+        )}
+      </GridItem>
+      <GridSeparator>
+        <Separator>{t("menuPreference")}</Separator>
+      </GridSeparator>
+      <GridItem>
+        <MenuGroup>
+          <label>
+            <input
+              type="radio"
+              name="menu"
+              value="Cheese"
+              onChange={formik.handleChange}
+            />
+            <MenuItem>
+              <p>🐔</p>
+            </MenuItem>
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="menu"
+              value="Beef"
+              onChange={formik.handleChange}
+            />
+            <MenuItem>
+              <p>🐮</p>
+            </MenuItem>
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="menu"
+              value="Vegan"
+              onChange={formik.handleChange}
+            />
+            <MenuItem>
+              <p>🥗</p>
+            </MenuItem>
+          </label>
+        </MenuGroup>
+      </GridItem>
+      <GridItem>
+        <Button type="submit">
+          {formik.isSubmitting ? <Loading /> : t("submitRsvp")}
+        </Button>
+      </GridItem>
+    </FormGrid>
   );
 };
 
