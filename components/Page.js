@@ -1,9 +1,10 @@
+import styled from "styled-components";
+
 import Meta from "./Meta";
 import Header from "./Header";
-import styled, { ThemeProvider, createGlobalStyle } from "styled-components";
+import { Background } from "./styles/BackgroundStyles";
 
 const StyledPage = styled.div`
-  background: white;
   color: ${props => props.theme.black};
 `;
 
@@ -18,6 +19,7 @@ const Page = ({ route, children }) => (
     <Meta route={route} />
     <Header />
     <Inner>{children}</Inner>
+    <Background />
   </StyledPage>
 );
 

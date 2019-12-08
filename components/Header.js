@@ -10,14 +10,14 @@ Router.onRouteChangeComplete = () => NProgress.done();
 Router.onRouteCHangeError = () => NProgress.done();
 
 const Logo = styled.h1`
-  font-size: 4rem;
+  font-size: 2.5rem;
   margin-left: 2rem;
   position: relative;
   z-index: 2;
   transform: skew(-7deg);
   a {
     padding: 0.5rem;
-    background: ${props => props.theme.red};
+    background: ${props => props.theme.gold};
     color: white;
     text-transform: uppercase;
     text-decoration: none;
@@ -47,7 +47,7 @@ const Header = () => (
     <div className="bar">
       <Logo>
         <Link href="/">
-          <a>WEDDING</a>
+          <a>Viktoria & Matias</a>
         </Link>
       </Logo>
       <Nav />
