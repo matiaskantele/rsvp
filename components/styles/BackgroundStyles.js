@@ -9,4 +9,5 @@ export const Background = styled.div`
   background: url("flowers.svg") no-repeat;
   transform: scaleY(-1);
   pointer-events: none;
+  z-index: -1;
 `;

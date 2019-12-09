@@ -15,12 +15,14 @@ const Inner = styled.div`
 `;
 
 const Page = ({ route, children }) => (
-  <StyledPage>
-    <Meta route={route} />
-    <Header />
-    <Inner>{children}</Inner>
+  <>
     <Background />
-  </StyledPage>
+    <StyledPage>
+      <Meta route={route} />
+      <Header />
+      <Inner>{children}</Inner>
+    </StyledPage>
+  </>
 );
 
 export default Page;

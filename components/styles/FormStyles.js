@@ -2,7 +2,6 @@ import styled, { keyframes } from "styled-components";
 
 export const FormGrid = styled.form`
   width: 100%;
-  background-color: white;
   display: grid;
   grid-template-columns:
     [viewport-start] minmax(1em, 1fr)
