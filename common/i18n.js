@@ -10,6 +10,7 @@ const resources = {
       "/info": "Info",
       "/rsvp": "RSVP",
       "/": "V❤️M",
+      couple: "Viktoria & Matias",
       vikki: "Hello Vikki!",
       personalInfo: "Personal Information",
       name: "Name",
@@ -30,6 +31,7 @@ const resources = {
     translation: {
       "/info": "информация",
       "/rsvp": "RSVP",
+      couple: "Виктория и Матиас",
       title: "в❤️м",
       vikki: "здравей вики!",
       personalInfo: "Лична информация",

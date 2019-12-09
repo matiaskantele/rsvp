@@ -2,6 +2,7 @@ import Link from "next/link";
 import Router from "next/router";
 import NProgress from "nprogress";
 import styled from "styled-components";
+import { useTranslation } from "react-i18next";
 
 import Nav from "./Nav";
 
@@ -42,17 +43,20 @@ const StyledHeader = styled.header`
   }
 `;
 
-const Header = () => (
-  <StyledHeader>
-    <div className="bar">
-      <Logo>
-        <Link href="/">
-          <a>Viktoria & Matias</a>
-        </Link>
-      </Logo>
-      <Nav />
-    </div>
-  </StyledHeader>
-);
+const Header = () => {
+  const [t] = useTranslation();
+  return (
+    <StyledHeader>
+      <div className="bar">
+        <Logo>
+          <Link href="/">
+            <a>{t("couple")}</a>
+          </Link>
+        </Logo>
+        <Nav />
+      </div>
+    </StyledHeader>
+  );
+};
 
 export default Header;
