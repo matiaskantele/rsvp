@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 
-import Timer from "../components/Timer";
+import Countdown from "../components/Countdown";
 
 const Invite = () => {
   const { t } = useTranslation();
@@ -12,7 +12,7 @@ const Invite = () => {
       <h2>{t("location")}</h2>
       <h2>{t("date")}</h2>
       <p>And that is in precisely</p>
-      <Timer />
+      <Countdown />
     </div>
   );
 };

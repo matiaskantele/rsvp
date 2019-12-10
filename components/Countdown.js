@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 const calculateTimeLeft = () => {
-  const difference = +new Date("2020-05-30T21:15:08+0200") - +new Date();
+  const difference = +new Date("2020-05-30T17:30:00+0200") - +new Date();
   let timeLeft = {};
 
   if (difference > 0) {
@@ -16,7 +16,7 @@ const calculateTimeLeft = () => {
   return timeLeft;
 };
 
-const Timer = () => {
+const Countdown = () => {
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
 
   useEffect(() => {
@@ -28,14 +28,14 @@ const Timer = () => {
     };
   });
 
-  const timerComponents = [];
+  const CountdownComponents = [];
 
   Object.keys(timeLeft).forEach(interval => {
     if (!timeLeft[interval]) {
       return;
     }
 
-    timerComponents.push(
+    CountdownComponents.push(
       <span key={interval}>
         {timeLeft[interval]} {interval}{" "}
       </span>
@@ -44,8 +44,8 @@ const Timer = () => {
 
   return (
     <h2>
-      {timerComponents.length ? (
-        timerComponents
+      {CountdownComponents.length ? (
+        CountdownComponents
       ) : (
         <span>This very minute!</span>
       )}
@@ -53,4 +53,4 @@ const Timer = () => {
   );
 };
 
-export default Timer;
+export default Countdown;
