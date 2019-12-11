@@ -6,7 +6,7 @@ import LanguageButton from "./styles/LanguageButton";
 const languages = ["en", "fi", "bg"];
 
 const LanguageSelect = () => {
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
 
   const languageButtons = languages.map(lang => (
     <LanguageButton
@@ -15,7 +15,7 @@ const LanguageSelect = () => {
       className="btn"
       onClick={() => i18n.changeLanguage(lang)}
     >
-      {lang}
+      {t(lang)}
     </LanguageButton>
   ));
 
