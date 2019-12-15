@@ -34,12 +34,12 @@ class AppInit extends App {
     html {
       box-sizing: border-box;
       font-size: 10px;
+      min-width: 36rem;
     }
     *, *:before, *:after {
       box-sizing: inherit;
       margin: 0;
       padding: 0;
-      /* line-height: 1; */
     }
     body {
       padding: 0;

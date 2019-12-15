@@ -8,7 +8,8 @@ export const BackgroundImage = styled.div`
   width: 100vw;
   z-index: -1;
   transform: scale(-1);
-  background-image: url("background.webp");
+  /* background-image: url("background.webp"); */
+  background-image: url("invite-background.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
