@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const NavStyles = styled.ul`
-  margin: 0;
+  line-height: 2;
   padding: 0;
   display: flex;
   justify-self: end;
@@ -18,8 +18,8 @@ const NavStyles = styled.ul`
     border: 0;
     cursor: pointer;
     @media (max-width: 700px) {
-      font-size: 10px;
-      padding: 0 10px;
+      font-size: 14px;
+      padding: 0 14px;
     }
     &:before {
       content: "";

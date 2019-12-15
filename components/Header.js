@@ -11,15 +11,14 @@ Router.onRouteChangeComplete = () => NProgress.done();
 Router.onRouteCHangeError = () => NProgress.done();
 
 const Logo = styled.h1`
-  font-size: 2.5rem;
-  margin-left: 2rem;
+  font-size: 3.5rem;
+  margin: 0.25rem 0 0.25rem 2rem;
   position: relative;
   z-index: 2;
-  transform: skew(-7deg);
+  line-height: 1.5;
   a {
     padding: 0.5rem;
-    background: ${props => props.theme.gold};
-    color: white;
+    color: ${props => props.theme.black};
     text-transform: uppercase;
     text-decoration: none;
   }
@@ -31,7 +30,9 @@ const Logo = styled.h1`
 
 const StyledHeader = styled.header`
   .bar {
-    border-bottom: 10px solid ${props => props.theme.black};
+    z-index: 99;
+    background-color: white;
+    border-bottom: 2px solid ${props => props.theme.black};
     display: grid;
     grid-template-columns: auto 1fr;
     justify-content: space-between;
@@ -50,7 +51,7 @@ const Header = () => {
       <div className="bar">
         <Logo>
           <Link href="/">
-            <a>{t("couple")}</a>
+            <a>{t("logo")}</a>
           </Link>
         </Logo>
         <Nav />

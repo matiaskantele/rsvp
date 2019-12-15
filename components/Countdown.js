@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 
+import { CountdownContainer } from "./styles/CountdownStyles";
+
 const calculateTimeLeft = () => {
   const difference = +new Date("2020-05-30T17:30:00+0200") - +new Date();
   let timeLeft = {};
@@ -43,13 +45,15 @@ const Countdown = () => {
   });
 
   return (
-    <h2>
-      {CountdownComponents.length ? (
-        CountdownComponents
-      ) : (
-        <span>This very minute!</span>
-      )}
-    </h2>
+    <CountdownContainer>
+      <h2>
+        {CountdownComponents.length ? (
+          CountdownComponents
+        ) : (
+          <span>This very minute!</span>
+        )}
+      </h2>
+    </CountdownContainer>
   );
 };
 

@@ -28,7 +28,7 @@ i18n
   .use(initReactI18next) // passes i18n down to react-i18next
   .use(LanguageDetector) // detech user language
   .init({
-    locale,
+    resources: locale,
     lng: "en",
     fallbackLng: "en",
     detection: detection,

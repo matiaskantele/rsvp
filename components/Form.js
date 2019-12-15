@@ -2,6 +2,7 @@ import { useTranslation } from "react-i18next";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
+import DatePicker from "./DatePicker";
 import {
   FormGrid,
   GridSeparator,
@@ -20,6 +21,7 @@ import {
 const validationSchema = Yup.object().shape({
   name: Yup.string().required("Who dis?"),
   menu: Yup.string(),
+  allergies: Yup.string(),
 });
 
 const encode = data => {
@@ -32,6 +34,7 @@ const onSubmit = values => {
   const payload = {
     name: values.name,
     menu: values.menu,
+    allergies: values.allergies,
   };
   console.log(values);
   fetch("/", {
@@ -62,6 +65,7 @@ const rsvpForm = props => {
     initialValues: {
       name: "",
       menu: "",
+      allergies: "",
     },
     validationSchema: validationSchema,
     onSubmit: onSubmit,
@@ -126,6 +130,22 @@ const rsvpForm = props => {
             </MenuItem>
           </label>
         </MenuGroup>
+      </GridItem>
+      <GridItem>
+        <Label htmlFor="allergies">{t("allergies")}</Label>
+        <Input
+          type="text"
+          name="allergies"
+          id="allergies"
+          value={formik.values.allergies}
+          onChange={formik.handleChange}
+        />
+        {formik.errors.allergies && (
+          <ErrorMessage>{formik.errors.allergies}</ErrorMessage>
+        )}
+      </GridItem>
+      <GridItem>
+        <DatePicker />
       </GridItem>
       <GridItem>
         <Button type="submit">

@@ -37,13 +37,16 @@ class AppInit extends App {
     }
     *, *:before, *:after {
       box-sizing: inherit;
+      margin: 0;
+      padding: 0;
+      /* line-height: 1; */
     }
     body {
       padding: 0;
       margin: 0;
       font-size: 1.5rem;
       font-weight: 500;
-      line-height: 2;
+      line-height: 1;
       font-family: 'Montserrat';
       height: 100vh;
       overflow-x: hidden;

@@ -12,11 +12,12 @@ const Inner = styled.div`
   max-width: ${props => props.theme.maxWidth};
   margin: 0 auto;
   padding: 2rem;
+  z-index: 1;
 `;
 
 const Page = ({ route, children }) => (
   <>
-    <Background />
+    {/* <Background /> */}
     <StyledPage>
       <Meta route={route} />
       <Header />

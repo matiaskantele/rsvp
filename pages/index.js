@@ -1,19 +1,22 @@
 import { useTranslation } from "react-i18next";
 
+import { InviteContainer } from "../components/styles/InviteStyles";
+import { BackgroundImage } from "../components/styles/BackgroundImageStyles";
 import Countdown from "../components/Countdown";
 
 const Invite = () => {
   const { t } = useTranslation();
 
   return (
-    <div>
-      <h1>{t("inviteIntro")}</h1>
-      <p>{t("pleaseJoin")}</p>
-      <h2>{t("location")}</h2>
-      <h2>{t("date")}</h2>
-      <p>And that is in precisely</p>
+    <InviteContainer>
+      <h1>
+        {t("bride")} <div>&</div> {t("groom")}
+      </h1>
+      <h2>{t("gettingMarried")}</h2>
+      <p>{t("timeAndDate")}</p>
       <Countdown />
-    </div>
+      <BackgroundImage />
+    </InviteContainer>
   );
 };
 
