@@ -10,8 +10,9 @@ const Map = ({ className }) => (
 );
 
 const StyledMap = styled(Map)`
-  width: 800px;
-  height: 600px;
+  width: 100%;
+  height: 40vh;
+  border: 1px solid ${props => props.theme.lightgrey};
 `;
 
 export default StyledMap;

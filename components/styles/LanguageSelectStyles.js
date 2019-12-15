@@ -6,7 +6,7 @@ export const LanguageButton = styled.button`
   background-image: ${props => `url(${props.image})`};
   background-position: center;
   background-size: cover;
-  border: 2px solid black;
+  border: 2px solid ${props => props.theme.lightgrey};
   cursor: pointer;
   filter: opacity(80%);
   transform: skew(-20deg);
