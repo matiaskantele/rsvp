@@ -5,12 +5,12 @@ export const InviteContainer = styled.div`
   flex-direction: column;
   align-items: center;
   padding-top: 22vh;
-  color: white;
-  text-shadow: 1px 1px 3px black;
+  color: black;
+  text-shadow: 1px 1px 4px white;
   & > h1 {
     font-size: 6rem;
     margin-bottom: 3rem;
-    text-shadow: 2px 2px 4px black;
+    text-shadow: 2px 2px 5px white;
   }
   & > h1 > div {
     display: block;
@@ -38,6 +38,7 @@ export const InviteContainer = styled.div`
       margin-bottom: 1.5rem;
     }
     & > p {
+      font-weight: 500;
       font-size: 2rem;
     }
   }

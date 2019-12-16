@@ -19,7 +19,7 @@ class AppInit extends App {
       lightgrey: "#E1E1E1",
       offWhite: "#EDEDED",
       gold: "#CA9E46",
-      maxWidth: "800px",
+      maxWidth: "900px",
       bs: "0 12px 24px 0 hsla(0, 0%, 0%, 0.09)",
     };
 
@@ -44,7 +44,6 @@ class AppInit extends App {
       padding: 0;
       margin: 0;
       font-size: 1.5rem;
-      font-weight: 500;
       line-height: 1;
       font-family: 'Montserrat';
       height: 100vh;

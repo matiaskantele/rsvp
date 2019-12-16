@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
-import DatePicker from "./DatePicker";
+// import DatePicker from "./DatePicker";
 import {
   FormGrid,
   GridSeparator,
@@ -144,9 +144,7 @@ const rsvpForm = props => {
           <ErrorMessage>{formik.errors.allergies}</ErrorMessage>
         )}
       </GridItem>
-      <GridItem>
-        <DatePicker />
-      </GridItem>
+      <GridItem>{/* <DatePicker /> */}</GridItem>
       <GridItem>
         <Button type="submit">
           {formik.isSubmitting ? <Loading /> : t("submitRsvp")}

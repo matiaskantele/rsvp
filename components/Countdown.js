@@ -22,12 +22,8 @@ const Countdown = () => {
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
 
   useEffect(() => {
-    const timeout = setTimeout(() => {
-      setTimeLeft(calculateTimeLeft());
-    }, 1000);
-    return () => {
-      clearTimeout(timeout);
-    };
+    const timeout = setTimeout(() => setTimeLeft(calculateTimeLeft()), 1000);
+    return () => clearTimeout(timeout);
   });
 
   const CountdownComponents = [];
@@ -46,13 +42,7 @@ const Countdown = () => {
 
   return (
     <CountdownContainer>
-      <h2>
-        {CountdownComponents.length ? (
-          CountdownComponents
-        ) : (
-          <span>This very minute!</span>
-        )}
-      </h2>
+      <h2>{CountdownComponents.length ? CountdownComponents : ""}</h2>
     </CountdownContainer>
   );
 };
