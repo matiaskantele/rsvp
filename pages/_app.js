@@ -34,7 +34,6 @@ class AppInit extends App {
     html {
       box-sizing: border-box;
       font-size: 10px;
-      min-width: 36rem;
     }
     *, *:before, *:after {
       box-sizing: inherit;

@@ -3,6 +3,12 @@ import styled from "styled-components";
 export const Container = styled.div`
   width: 100%;
   margin: 3rem 0;
+  &:first-of-type {
+    margin-top: 1.5rem;
+  }
+  &:last-of-type {
+    margin-bottom: 0;
+  }
   & > div {
     display: flex;
     flex-direction: row;

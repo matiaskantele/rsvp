@@ -21,10 +21,8 @@ export const LanguageButton = styled.button`
 `;
 
 export const LanguageSelectContainer = styled.div`
-  height: 100%;
   margin: 0 3rem 0 1.4rem;
   padding: 0;
-  float: left;
   position: relative;
   display: flex;
   flex-direction: row;
