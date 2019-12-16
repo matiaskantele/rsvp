@@ -11,7 +11,7 @@ Router.onRouteChangeComplete = () => NProgress.done();
 Router.onRouteCHangeError = () => NProgress.done();
 
 const Logo = styled.h1`
-  font-size: 3.5rem;
+  font-size: 3rem;
   margin: 0.25rem 0 0.25rem 2rem;
   position: relative;
   z-index: 2;

@@ -1,37 +1,57 @@
-import Map from "../components/Map";
+import { useTranslation } from "react-i18next";
 
-const Info = () => (
-  <div>
-    <h1>Location</h1>
-    <p>Topola Skies</p>
-    <p>Topola Village, Dobrich 9454, Bulgaria</p>
-    <p>+359 52 904 040</p>
-    <p>
-      First night of the hotel stay is on us. If you'd like to stay extra nights
-      before or after the wedding day, please note in the RSVP.
-    </p>
-    <h2>Arrival</h2>
-    <p>
-      We recommend using a direct flight with Norwegian to either Varna or
-      Burgas.
-    </p>
-    <h1>Date</h1>
-    <p>Saturday, May 30, 2020</p>
-    <h1>Schedule</h1>
-    <h2>17:00 Welcome Drinks</h2>
-    <p>Topola Skies seafront lawn </p>
-    <h2>17:30 Wedding Ceremony</h2>
-    <p>Topola Skies seafront lawn </p>
-    <h2>18:00 Reception</h2>
-    <p>Cliffside restaurant in front of the seafront lawn.</p>
-    <h3>Dresscode</h3>
-    <p>
-      It's a wedding... so Black tie, Coctail or Smart-casual. Come looking good
-      and comfy.
-    </p>
-    <h1>Travel</h1>
-    <Map />
-  </div>
+import Map from "../components/Map";
+import { Container, Image } from "../components/styles/InfoStyles";
+
+const Section = props => (
+  <Container>
+    <div>
+      <Image src={props.image} alt={props.title} header={props.title} />
+      <h1>{props.title}</h1>
+    </div>
+    {props.children}
+  </Container>
 );
+
+const Info = () => {
+  const { t } = useTranslation();
+
+  return (
+    <div>
+      <Section title={t("date")} image="date.svg">
+        <h2>{t("saturday")}</h2>
+      </Section>
+      <Section title={t("location")} image="location.svg">
+        <h2>{t("resortName")}</h2>
+        <p>
+          {t("town")}
+          <br />
+          {t("area")}
+        </p>
+        <p>{t("resortPhone")}</p>
+        <p>{t("firstNight")}</p>
+        <p>{t("extraNights")}</p>
+      </Section>
+      <Section title={t("arrival")} image="arrival.svg">
+        <h2>{t("byAir")}</h2>
+        <p>{t("flightRecommendation")}</p>
+        <p>{t("carRentalCheap")}</p>
+        <p>{t("transportationHelp")}</p>
+        <h2>{t("byCar")}</h2>
+        <p>{t("freeParking")}</p>
+      </Section>
+      <Section title={t("schedule")} image="schedule.svg">
+        <h2>{t("welcomeDrinks")}</h2>
+        <p>{t("ceremonyLocation")}</p>
+        <h2>{t("weddingCeremony")}</h2>
+        <h2>{t("reception")}</h2>
+        <p>{t("receptionLocation")}</p>
+      </Section>
+      <Section title={t("map")} image="map.svg">
+        <Map />
+      </Section>
+    </div>
+  );
+};
 
 export default Info;
