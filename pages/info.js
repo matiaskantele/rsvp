@@ -47,6 +47,11 @@ const Info = () => {
         <h2>{t("reception")}</h2>
         <p>{t("receptionLocation")}</p>
       </Section>
+      <Section title={t("gifts")} image="gifts.svg">
+        <h2>{t("onlyYou")}</h2>
+        <p>{t("notNecessary")}</p>
+        <p>{t("ifRich")}</p>
+      </Section>
       <Section title={t("map")} image="map.svg">
         <Map />
       </Section>
