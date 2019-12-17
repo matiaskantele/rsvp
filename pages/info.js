@@ -47,6 +47,10 @@ const Info = () => {
         <h2>{t("reception")}</h2>
         <p>{t("receptionLocation")}</p>
       </Section>
+      <Section title={t("dressCode")} image="dress-code.svg">
+        <h2>{t("smartCasual")}</h2>
+        <p>{t("dressSmart")}</p>
+      </Section>
       <Section title={t("gifts")} image="gifts.svg">
         <h2>{t("onlyYou")}</h2>
         <p>{t("notNecessary")}</p>
