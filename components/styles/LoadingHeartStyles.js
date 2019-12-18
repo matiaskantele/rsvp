@@ -28,7 +28,6 @@ export const LoadingHeart = styled.div`
   height: 40px;
   transform: rotate(45deg);
   transform-origin: 20px 20px;
-
   & > div {
     top: 16px;
     left: 16px;
