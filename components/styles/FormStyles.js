@@ -1,15 +1,9 @@
 import styled, { keyframes } from "styled-components";
 
-export const FormGrid = styled.form`
+export const Form = styled.form`
   width: 100%;
-  display: grid;
-  grid-template-columns:
-    [viewport-start] minmax(1em, 1fr)
-    [container-start] minmax(0, 30em) [container-end]
-    minmax(1em, 1fr) [viewport-end];
-  grid-gap: 1rem;
-  justify-content: center;
-  align-items: center;
+  display: flex;
+  flex-direction: column;
 
   [type="radio"] {
     position: absolute;
@@ -22,160 +16,102 @@ export const FormGrid = styled.form`
 
   [type="radio"] + div {
     cursor: pointer;
-    outline: 0.125rem solid gray;
+    outline: 0.125rem solid ${props => props.theme.lightgrey};
     text-align: center;
   }
 
   [type="radio"]:checked + div {
-    outline: 0.25rem solid ${props => props.theme.gold};
+    outline: 0.25rem solid ${props => props.theme.lightgrey};
   }
 `;
 
-export const GridItem = styled.div`
-  grid-column: container;
-  justify-self: center;
-  min-height: 10rem;
-`;
-
-export const GridSeparator = styled.div`
-  height: 100%;
-  width: 80%;
-  margin: 0 auto;
-  text-align: center;
-  grid-column: viewport;
-  display: flex;
-  justify-items: center;
-  justify-content: space-between;
-  grid-template-columns: inherit;
-  & > * {
-    grid-column: container;
+const puffIn = keyframes`
+  0% {
+    transform: scale(1.5);
+    transform-origin: 50% 0%;
+    filter: blur(4px);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    transform-origin: 50% 0%;
+    filter: blur(0px);
+    opacity: 1;
   }
 `;
 
-export const LeftSeparator = styled.div`
-  background: url("separator.svg") no-repeat center center;
-  height: 100%;
-  width: 15rem;
-`;
-
-export const RightSeparator = styled.div`
-  background: url("separator.svg") no-repeat center center;
-  height: 100%;
-  width: 15rem;
-  transform: scaleX(-1);
+export const AnimatedContainer = styled.div`
+  animation: ${puffIn} 0.7s cubic-bezier(0.47, 0, 0.745, 0.715) 0.2s both;
 `;
 
 export const Label = styled.label`
   display: block;
+  margin-bottom: 1rem;
+  font-size: 2rem;
 `;
 
 export const Input = styled.input`
-  width: 45rem;
-  height: 3rem;
+  position: relative;
+  margin: auto;
+  width: 100%;
+  max-width: 280px;
+  height: 4rem;
   border-radius: 1rem;
-  margin: 0 auto;
+  margin: 0 auto 2rem auto;
   padding-left: 1rem;
+  border: 2px solid black;
+  font-size: 2rem;
+  font-family: "Montserrat";
+`;
+
+export const StyledTextArea = styled.textarea`
+  border: 0.25rem solid;
+  max-width: 100%;
+  border-radius: 1rem;
+  padding: 1rem;
+  font-family: "Montserrat";
 `;
 
 export const ErrorMessage = styled.div`
-  position: relative;
-  height: 3rem;
-  top: -3rem;
-  padding-right: 1rem;
-  box-shadow: 0 0 0 0.6rem pink;
+  height: 4rem;
   text-align: right;
   border-radius: 1rem;
   pointer-events: none;
-  color: pink;
+  color: red;
+  font-weight: 500;
 `;
 
 export const MenuGroup = styled.div`
   display: flex;
-  width: 40rem;
+  width: 100%;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-evenly;
+  margin-top: 1.5rem;
   & > label {
     margin: 0;
   }
 `;
 
 export const MenuItem = styled.div`
-  width: 10rem;
-  height: 10rem;
+  width: 7rem;
+  height: 100%;
   & > p {
-    font-size: 5rem;
-    margin: 0;
+    font-size: 6rem;
+    margin: auto;
   }
 `;
 
 export const Button = styled.button`
-  grid-column: container;
+  display: block;
   background: none;
   height: 6rem;
   width: 25rem;
-  border: 0.4rem solid ${props => props.theme.gold};
+  border: 0.4rem solid ${props => props.theme.black};
   border-radius: 1.5rem;
-  margin: 2rem;
+  margin: 2rem auto;
   font-size: 2rem;
-`;
-
-const heartKeyframes = keyframes`
-  0% {
-    transform: scale(0.95);
-  }
-  5% {
-    transform: scale(1.1);
-  }
-  39% {
-    transform: scale(0.85);
-  }
-  45% {
-    transform: scale(1);
-  }
-  60% {
-    transform: scale(0.95);
-  }
-  100% {
-    transform: scale(0.9);
-  }
-`;
-
-export const LoadingHeart = styled.div`
-  display: inline-block;
-  position: relative;
-  width: 40px;
-  height: 40px;
-  transform: rotate(45deg);
-  transform-origin: 20px 20px;
-
-  & > div {
-    top: 16px;
-    left: 16px;
-    position: absolute;
-    width: 16px;
-    height: 16px;
-    background: pink;
-    animation: ${heartKeyframes} 1.2s infinite
-      cubic-bezier(0.215, 0.61, 0.355, 1);
-
-    &:after,
-    &:before {
-      content: " ";
-      position: absolute;
-      display: block;
-      width: 16px;
-      height: 16px;
-      background: pink;
-    }
-
-    &:before {
-      left: -12px;
-      border-radius: 50% 0 0 50%;
-    }
-
-    &:after {
-      top: -12px;
-      border-radius: 50% 50% 0 0;
-    }
+  cursor: pointer;
+  &:disabled {
+    background: red;
   }
 `;

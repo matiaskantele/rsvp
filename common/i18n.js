@@ -4,9 +4,9 @@ import LanguageDetector from "i18next-browser-languagedetector";
 
 import locale from "./locale.json";
 
-const detection = {
+const options = {
   // order and from where user language should be detected
-  order: ["cookie", "localStorage"],
+  order: ["localStorage", "cookie"],
 
   // keys or params to lookup language from
   lookupCookie: "i18next",
@@ -16,29 +16,17 @@ const detection = {
   caches: ["localStorage", "cookie"],
   excludeCacheFor: ["cimode"], // languages to not persist (cookie, localStorage)
 
-  // optional expire and domain for set cookie
-  // cookieMinutes: 10,
-  // cookieDomain: 'myDomain',
-
-  // only detect languages that are in the whitelist
   checkWhitelist: true,
 };
 
 i18n
-  .use(initReactI18next) // passes i18n down to react-i18next
   .use(LanguageDetector) // detech user language
+  .use(initReactI18next) // passes i18n down to react-i18next
   .init({
     resources: locale,
-    lng: "en",
     fallbackLng: "en",
-    detection: detection,
     whitelist: ["en", "fi", "bg"],
-
-    keySeparator: false, // we do not use keys in form messages.welcome
-
-    interpolation: {
-      escapeValue: false, // react already safes from xss
-    },
+    detection: options,
   });
 
 export default i18n;

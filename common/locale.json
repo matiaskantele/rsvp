@@ -45,6 +45,8 @@
       "notNecessary": "No need to bring us anything in addition.",
       "ifRich": "In case you are rolling in money and want to show additional support, our bank account is FI94 1764 3500 0342 75",
       "map": "Map",
+      "attend": "Coming",
+      "decline": "Can't",
       "name": "Name",
       "menuPreference": "Food preference",
       "submitRsvp": "Submit RSVP"
@@ -81,6 +83,8 @@
       "notNecessary": "Ei tarvitse tuoda muita lahjoja.",
       "ifRich": "Mikäli raha polttaa pahasti taskussa ja haluat tukea meitä, niin tilinumeromme on FI94 1764 3500 0342 75",
       "map": "Kartta",
+      "attend": "Tulen",
+      "decline": "En pysty",
       "name": "Nimi",
       "menuPreference": "Ruokatoive",
       "submitRsvp": "Lähetä RSVP"
@@ -130,7 +134,8 @@
       "notNecessary": "Няма нужда да ни носите нищо в допълнение.",
       "ifRich": "В случай, че търкаляте пари и искате да покажете допълнителна поддръжка, нашата банкова сметка е FI94 1764 3500 0342 75",
       "map": "карта",
-      "personalInfo": "Лична информация",
+      "attend": "идващ",
+      "decline": "не мога",
       "name": "име",
       "menuPreference": "Предпочитания за менюто",
       "submitRsvp": "Изпращане RSVP"

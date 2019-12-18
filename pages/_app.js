@@ -24,13 +24,6 @@ class AppInit extends App {
     };
 
     const GlobalStyle = createGlobalStyle`
-    @font-face {
-      font-family: 'radnika_next';
-      src: url('radnikanext-medium-webfont.woff2') format('woff2');
-      font-weight: normal;
-      font-style: normal;
-      font-display: swap;
-    }
     html {
       box-sizing: border-box;
       font-size: 10px;
