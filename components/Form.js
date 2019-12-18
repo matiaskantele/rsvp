@@ -1,27 +1,52 @@
 import { useTranslation } from "react-i18next";
-import { useFormik } from "formik";
+import { Formik, useField } from "formik";
 import * as Yup from "yup";
 
 // import DatePicker from "./DatePicker";
 import {
-  FormGrid,
-  GridSeparator,
-  LeftSeparator,
-  RightSeparator,
-  GridItem,
+  Form,
+  AnimatedContainer,
   Label,
   Input,
+  StyledTextArea,
   ErrorMessage,
   MenuGroup,
   MenuItem,
   Button,
-  LoadingHeart,
 } from "./styles/FormStyles";
+import LoadingHeart from "./LoadingHeart";
+
+const TextInput = ({ label, ...props }) => {
+  const [field, meta] = useField(props);
+  return (
+    <>
+      <Label htmlFor={props.id || props.name}>{label}</Label>
+      <Input {...field} {...props} />
+      {meta.touched && meta.error ? (
+        <ErrorMessage>{meta.error}</ErrorMessage>
+      ) : null}
+    </>
+  );
+};
+
+const TextArea = ({ label, ...props }) => {
+  const [field, meta] = useField(props);
+  return (
+    <>
+      <Label htmlFor={props.id || props.name}>{label}</Label>
+      <StyledTextArea {...field} {...props} />
+      {meta.touched && meta.error ? (
+        <ErrorMessage>{meta.error}</ErrorMessage>
+      ) : null}
+    </>
+  );
+};
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required("Who dis?"),
   menu: Yup.string(),
   allergies: Yup.string(),
+  message: Yup.string().max(256, "Message too long."),
 });
 
 const encode = data => {
@@ -30,13 +55,8 @@ const encode = data => {
     .join("&");
 };
 
-const onSubmit = values => {
-  const payload = {
-    name: values.name,
-    menu: values.menu,
-    allergies: values.allergies,
-  };
-  console.log(values);
+const postForm = payload => {
+  console.log(payload);
   fetch("/", {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -46,112 +66,119 @@ const onSubmit = values => {
     .catch(error => console.log(error));
 };
 
-const Separator = props => (
-  <>
-    <LeftSeparator />
-    <h1>{props.children}</h1>
-    <RightSeparator />
-  </>
-);
-
-const Loading = props => (
-  <LoadingHeart>
-    <div />
-  </LoadingHeart>
-);
-
-const rsvpForm = props => {
-  const formik = useFormik({
-    initialValues: {
-      name: "",
-      menu: "",
-      allergies: "",
-    },
-    validationSchema: validationSchema,
-    onSubmit: onSubmit,
-    onChange: () => console.log(values),
-  });
+const rsvpForm = ({ selected, attending }) => {
   const { t } = useTranslation();
 
+  const submit = values => {
+    const payload = { attending: attending, ...values };
+    postForm(payload);
+  };
+
+  const nameField = (
+    <TextInput
+      label={t("name")}
+      name="name"
+      type="text"
+      placeholder={t("namePlaceholder")}
+    />
+  );
+
+  const attendingFields = <AnimatedContainer>{nameField}</AnimatedContainer>;
+
+  const declineFields = (
+    <AnimatedContainer>
+      {nameField}
+      <TextArea
+        label={t("message")}
+        name="message"
+        rows="5"
+        placeholder={t("messagePlaceholder")}
+      />
+    </AnimatedContainer>
+  );
+
   return (
-    <FormGrid name="rsvp" data-netlify="true" onSubmit={formik.handleSubmit}>
-      <GridSeparator>
-        <Separator>{t("personalInfo")}</Separator>
-      </GridSeparator>
-      <GridItem>
-        <Label htmlFor="name">{t("name")}</Label>
-        <Input
-          type="text"
-          name="name"
-          id="name"
-          value={formik.values.name}
-          onChange={formik.handleChange}
-        />
-        {formik.errors.name && (
-          <ErrorMessage>{formik.errors.name}</ErrorMessage>
-        )}
-      </GridItem>
-      <GridSeparator>
-        <Separator>{t("menuPreference")}</Separator>
-      </GridSeparator>
-      <GridItem>
-        <MenuGroup>
-          <label>
-            <input
-              type="radio"
-              name="menu"
-              value="Cheese"
-              onChange={formik.handleChange}
-            />
-            <MenuItem>
-              <p>🐔</p>
-            </MenuItem>
-          </label>
-          <label>
-            <input
-              type="radio"
-              name="menu"
-              value="Beef"
-              onChange={formik.handleChange}
-            />
-            <MenuItem>
-              <p>🐮</p>
-            </MenuItem>
-          </label>
-          <label>
-            <input
-              type="radio"
-              name="menu"
-              value="Vegan"
-              onChange={formik.handleChange}
-            />
-            <MenuItem>
-              <p>🥗</p>
-            </MenuItem>
-          </label>
-        </MenuGroup>
-      </GridItem>
-      <GridItem>
-        <Label htmlFor="allergies">{t("allergies")}</Label>
-        <Input
-          type="text"
-          name="allergies"
-          id="allergies"
-          value={formik.values.allergies}
-          onChange={formik.handleChange}
-        />
-        {formik.errors.allergies && (
-          <ErrorMessage>{formik.errors.allergies}</ErrorMessage>
-        )}
-      </GridItem>
-      <GridItem>{/* <DatePicker /> */}</GridItem>
-      <GridItem>
-        <Button type="submit">
-          {formik.isSubmitting ? <Loading /> : t("submitRsvp")}
-        </Button>
-      </GridItem>
-    </FormGrid>
+    <Formik
+      initialValues={{
+        name: "",
+        menu: "",
+        allergies: "",
+        message: "",
+      }}
+      validationSchema={validationSchema}
+      onSubmit={submit}
+    >
+      {({ dirty, isValid, isSubmitting, handleSubmit }) => (
+        <Form name="rsvp" data-netlify="true" onSubmit={handleSubmit}>
+          {selected && (attending ? attendingFields : declineFields)}
+          {selected && (
+            <AnimatedContainer>
+              <Button type="submit">
+                {isSubmitting ? <LoadingHeart /> : t("submitRsvp")}
+              </Button>
+            </AnimatedContainer>
+          )}
+        </Form>
+      )}
+    </Formik>
   );
 };
 
 export default rsvpForm;
+/*
+<MenuGroup>
+<label>
+  <input
+    type="radio"
+    name="menu"
+    value="Cheese"
+    onChange={formik.handleChange}
+  />
+  <MenuItem>
+    <p>🐔</p>
+  </MenuItem>
+</label>
+<label>
+  <input
+    type="radio"
+    name="menu"
+    value="Beef"
+    onChange={formik.handleChange}
+  />
+  <MenuItem>
+    <p>🐮</p>
+  </MenuItem>
+</label>
+<label>
+  <input
+    type="radio"
+    name="menu"
+    value="Vegan"
+    onChange={formik.handleChange}
+  />
+  <MenuItem>
+    <p>🥗</p>
+  </MenuItem>
+</label>
+</MenuGroup>
+</GridItem>
+<GridItem>
+<Label htmlFor="allergies">{t("allergies")}</Label>
+<Input
+type="text"
+name="allergies"
+id="allergies"
+value={formik.values.allergies}
+onChange={formik.handleChange}
+/>
+{formik.errors.allergies && (
+<ErrorMessage>{formik.errors.allergies}</ErrorMessage>
+)}
+</GridItem>
+// <GridItem>{/* <DatePicker /> */
+/* </GridItem> */
+/* // <GridItem>
+//   <Button type="submit">
+//     {formik.isSubmitting ? <Loading /> : t("submitRsvp")}
+//   </Button>
+// </GridItem> */

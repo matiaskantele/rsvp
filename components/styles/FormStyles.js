@@ -51,24 +51,23 @@ export const Label = styled.label`
 `;
 
 export const Input = styled.input`
-  position: relative;
-  margin: auto;
-  width: 100%;
-  max-width: 280px;
   height: 4rem;
-  border-radius: 1rem;
-  margin: 0 auto 2rem auto;
+  width: calc(100% - 2rem);
+  margin: 0 0 2rem 2rem;
   padding-left: 1rem;
-  border: 2px solid black;
+  border: 2px solid ${props => props.theme.lightgrey};
+  border-radius: 1rem;
   font-size: 2rem;
   font-family: "Montserrat";
 `;
 
 export const StyledTextArea = styled.textarea`
-  border: 0.25rem solid;
-  max-width: 100%;
+  width: calc(100% - 2rem);
+  margin: 0 0 2rem 2rem;
+  border: 0.2rem solid ${props => props.theme.lightgrey};
   border-radius: 1rem;
   padding: 1rem;
+  font-size: 2rem;
   font-family: "Montserrat";
 `;
 

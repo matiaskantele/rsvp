@@ -48,6 +48,9 @@
       "attend": "Coming",
       "decline": "Can't",
       "name": "Name",
+      "namePlaceholder": "Bilbo Baggins",
+      "message": "Message",
+      "messagePlaceholder": "Voluntary wishes to the couple...",
       "menuPreference": "Food preference",
       "submitRsvp": "Submit RSVP"
     }
@@ -86,6 +89,8 @@
       "attend": "Tulen",
       "decline": "En pysty",
       "name": "Nimi",
+      "message": "Viesti",
+      "messagePlaceholder": "Vapaaehtoiset toivotukset pariskunnalle...",
       "menuPreference": "Ruokatoive",
       "submitRsvp": "Lähetä RSVP"
     }
@@ -137,6 +142,8 @@
       "attend": "идващ",
       "decline": "не мога",
       "name": "име",
+      "message": "Посланието",
+      "messagePlaceholder": "Доброволни пожелания към двойката...",
       "menuPreference": "Предпочитания за менюто",
       "submitRsvp": "Изпращане RSVP"
     }
