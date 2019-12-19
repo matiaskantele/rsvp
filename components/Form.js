@@ -55,23 +55,18 @@ const encode = data => {
     .join("&");
 };
 
-const postForm = payload => {
-  console.log(payload);
-  fetch("/", {
-    method: "POST",
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: encode({ "form-name": "rsvp", ...payload }),
-  })
-    .then(() => console.log("Success!"))
-    .catch(error => console.log(error));
-};
-
 const rsvpForm = ({ selected, attending }) => {
   const { t } = useTranslation();
 
   const submit = values => {
-    const payload = { attending: attending, ...values };
-    postForm(payload);
+    console.log(values);
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: encode({ "form-name": "rsvp", attending: attending, ...values }),
+    })
+      .then(() => console.log("Success!"))
+      .catch(error => console.log(error));
   };
 
   const nameField = (
