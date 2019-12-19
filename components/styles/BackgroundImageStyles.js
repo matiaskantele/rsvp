@@ -3,11 +3,11 @@ import styled, { keyframes } from "styled-components";
 const kenburns = keyframes`
   0% {
     transform: scale(1) translateY(0);
-    transform-origin: 50% 16%;
+    transform-origin: 60% 20%;
   }
   100% {
-    transform: scale(1.125) translateY(-15px);
-    transform-origin: top;
+    transform: scale(1.4) translateY(-1.5rem);
+    transform-origin: 70% 22%;
   }
 `;
 
