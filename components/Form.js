@@ -59,13 +59,18 @@ const rsvpForm = ({ selected, attending }) => {
   const { t } = useTranslation();
 
   const submit = values => {
-    console.log(values);
-    fetch("/", {
+    const options = {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: encode({ "form-name": "rsvp", attending: attending, ...values }),
-    })
-      .then(() => console.log("Success!"))
+      body: encode({
+        "form-name": "rsvp",
+        attending: attending,
+        ...values,
+      }),
+    };
+    console.log(options);
+    fetch("/", options)
+      .then(() => console.log("Form submitted!"))
       .catch(error => console.log(error));
   };
 
@@ -96,8 +101,8 @@ const rsvpForm = ({ selected, attending }) => {
     <Formik
       initialValues={{
         name: "",
-        menu: "",
-        allergies: "",
+        // menu: "",
+        // allergies: "",
         message: "",
       }}
       validationSchema={validationSchema}
