@@ -5,6 +5,7 @@ import * as Yup from "yup";
 // import DatePicker from "./DatePicker";
 import {
   Form,
+  NetlifyFields,
   AnimatedContainer,
   Label,
   Input,
@@ -83,6 +84,17 @@ const rsvpForm = ({ selected, attending }) => {
     />
   );
 
+  const generateInput = array => array.map(i => <input name={i} key={i} />);
+
+  const netlifyFields = (
+    <NetlifyFields>
+      <input name="attending" />
+      {attending
+        ? generateInput(["menu", "allergies", "message"])
+        : generateInput(["menu", "allergies"])}
+    </NetlifyFields>
+  );
+
   const attendingFields = <AnimatedContainer>{nameField}</AnimatedContainer>;
 
   const declineFields = (
@@ -101,8 +113,8 @@ const rsvpForm = ({ selected, attending }) => {
     <Formik
       initialValues={{
         name: "",
-        // menu: "",
-        // allergies: "",
+        menu: "",
+        allergies: "",
         message: "",
       }}
       validationSchema={validationSchema}
@@ -110,6 +122,7 @@ const rsvpForm = ({ selected, attending }) => {
     >
       {({ dirty, isValid, isSubmitting, handleSubmit }) => (
         <Form name="rsvp" data-netlify="true" onSubmit={handleSubmit}>
+          {netlifyFields}
           {selected && (attending ? attendingFields : declineFields)}
           {selected && (
             <AnimatedContainer>

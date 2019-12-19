@@ -25,6 +25,10 @@ export const Form = styled.form`
   }
 `;
 
+export const NetlifyFields = styled.div`
+  display: none;
+`;
+
 const puffIn = keyframes`
   0% {
     transform: scale(1.5);
