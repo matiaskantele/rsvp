@@ -5,17 +5,32 @@ import * as Yup from "yup";
 // import DatePicker from "./DatePicker";
 import {
   Form,
-  HiddenInputsForNetlifyForms,
+  Hidden,
   AnimatedContainer,
   Label,
   Input,
   StyledTextArea,
   ErrorMessage,
   MenuGroup,
-  MenuItem,
+  MenuImage,
   Button,
 } from "./styles/FormStyles";
 import LoadingHeart from "./LoadingHeart";
+
+const hiddenInputsForNetlifyForms = (
+  <Hidden>
+    {[
+      "attending",
+      "name",
+      "menu",
+      "dietaryRestrictions",
+      "message",
+      "songs",
+    ].map(i => (
+      <input name={i} key={i} />
+    ))}
+  </Hidden>
+);
 
 const TextInput = ({ label, ...props }) => {
   const [field, meta] = useField(props);
@@ -43,11 +58,27 @@ const TextArea = ({ label, ...props }) => {
   );
 };
 
+const RadioSelection = ({ label, ...props }) => {
+  const [field] = useField(props);
+  return (
+    <>
+      <Label>
+        <Input {...field} {...props} />
+        <MenuImage src={props.image} title={props.value.toLowerCase()} />
+      </Label>
+    </>
+  );
+};
+
 const validationSchema = Yup.object().shape({
   name: Yup.string().required("Who dis?"),
   menu: Yup.string(),
-  allergies: Yup.string(),
+  dietaryRestrictions: Yup.string().max(
+    256,
+    "I feel you, but the limit here is 256 characters..."
+  ),
   message: Yup.string().max(256, "Message too long."),
+  songs: Yup.string().max(256, "The night is only so long..."),
 });
 
 const encode = data => {
@@ -75,7 +106,7 @@ const rsvpForm = ({ selected, attending }) => {
       .catch(error => console.log(error));
   };
 
-  const nameField = (
+  const nameInput = (
     <TextInput
       label={t("name")}
       name="name"
@@ -84,25 +115,68 @@ const rsvpForm = ({ selected, attending }) => {
     />
   );
 
-  const netlifyFields = (
-    <HiddenInputsForNetlifyForms>
-      {["name", "attending", "menu", "allergies", "message"].map(i => (
-        <input name={i} key={i} />
-      ))}
-    </HiddenInputsForNetlifyForms>
+  const textArea = (
+    <TextArea
+      label={t("message")}
+      name="message"
+      rows="5"
+      placeholder={t("messagePlaceholder")}
+    />
   );
 
-  const attendingFields = <>{nameField}</>;
+  const songs = (
+    <TextInput
+      label={t("songs")}
+      name="songs"
+      type="text"
+      placeholder={t("songsPlaceholder")}
+    />
+  );
+
+  const menuSelection = (
+    <>
+      <Label htmlFor="menu">{t("menu")}</Label>
+      <MenuGroup id="menu">
+        <RadioSelection
+          type="radio"
+          name="menu"
+          value="Chicken"
+          image="chicken.svg"
+        />
+        <RadioSelection type="radio" name="menu" value="Pork" image="pig.svg" />
+        <RadioSelection
+          type="radio"
+          name="menu"
+          value="Vege"
+          image="vege.svg"
+        />
+      </MenuGroup>
+    </>
+  );
+
+  const dietaryRestrictions = (
+    <TextInput
+      label={t("dietaryRestrictions")}
+      name="dietaryRestrictions"
+      type="text"
+      placeholder={t("dietaryRestrictionsPlaceholder")}
+    />
+  );
+
+  const attendingFields = (
+    <>
+      {nameInput}
+      {menuSelection}
+      {dietaryRestrictions}
+      {textArea}
+      {songs}
+    </>
+  );
 
   const declineFields = (
     <>
-      {nameField}
-      <TextArea
-        label={t("message")}
-        name="message"
-        rows="5"
-        placeholder={t("messagePlaceholder")}
-      />
+      {nameInput}
+      {textArea}
     </>
   );
 
@@ -111,25 +185,24 @@ const rsvpForm = ({ selected, attending }) => {
       initialValues={{
         name: "",
         menu: "",
-        allergies: "",
+        dietaryRestrictions: "",
         message: "",
+        songs: "",
       }}
       validationSchema={validationSchema}
       onSubmit={submit}
     >
       {({ dirty, isValid, isSubmitting, handleSubmit }) => (
         <Form name="rsvp" data-netlify="true" onSubmit={handleSubmit}>
-          {netlifyFields}
-          <AnimatedContainer>
-            {selected && (
-              <>
-                {attending ? attendingFields : declineFields}
-                <Button type="submit">
-                  {isSubmitting ? <LoadingHeart /> : t("submitRsvp")}
-                </Button>
-              </>
-            )}
-          </AnimatedContainer>
+          {hiddenInputsForNetlifyForms}
+          {selected && (
+            <AnimatedContainer>
+              {attending ? attendingFields : declineFields}
+              <Button type="submit">
+                {isSubmitting ? <LoadingHeart /> : t("submitRsvp")}
+              </Button>
+            </AnimatedContainer>
+          )}
         </Form>
       )}
     </Formik>
@@ -137,60 +210,3 @@ const rsvpForm = ({ selected, attending }) => {
 };
 
 export default rsvpForm;
-/*
-<MenuGroup>
-<label>
-  <input
-    type="radio"
-    name="menu"
-    value="Cheese"
-    onChange={formik.handleChange}
-  />
-  <MenuItem>
-    <p>🐔</p>
-  </MenuItem>
-</label>
-<label>
-  <input
-    type="radio"
-    name="menu"
-    value="Beef"
-    onChange={formik.handleChange}
-  />
-  <MenuItem>
-    <p>🐮</p>
-  </MenuItem>
-</label>
-<label>
-  <input
-    type="radio"
-    name="menu"
-    value="Vegan"
-    onChange={formik.handleChange}
-  />
-  <MenuItem>
-    <p>🥗</p>
-  </MenuItem>
-</label>
-</MenuGroup>
-</GridItem>
-<GridItem>
-<Label htmlFor="allergies">{t("allergies")}</Label>
-<Input
-type="text"
-name="allergies"
-id="allergies"
-value={formik.values.allergies}
-onChange={formik.handleChange}
-/>
-{formik.errors.allergies && (
-<ErrorMessage>{formik.errors.allergies}</ErrorMessage>
-)}
-</GridItem>
-// <GridItem>{/* <DatePicker /> */
-/* </GridItem> */
-/* // <GridItem>
-//   <Button type="submit">
-//     {formik.isSubmitting ? <Loading /> : t("submitRsvp")}
-//   </Button>
-// </GridItem> */

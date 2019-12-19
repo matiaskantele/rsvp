@@ -21,11 +21,11 @@ export const Form = styled.form`
   }
 
   [type="radio"]:checked + div {
-    outline: 0.25rem solid ${props => props.theme.lightgrey};
+    outline: 0.25rem solid ${props => props.theme.black};
   }
 `;
 
-export const HiddenInputsForNetlifyForms = styled.div`
+export const Hidden = styled.div`
   display: none;
 `;
 
@@ -86,21 +86,23 @@ export const ErrorMessage = styled.div`
 
 export const MenuGroup = styled.div`
   display: flex;
-  width: 100%;
+  width: calc(100% - 2rem);
   align-items: center;
-  justify-content: space-evenly;
-  margin-top: 1.5rem;
+  justify-content: space-between;
+  margin: 0 0 2rem 2rem;
   & > label {
     margin: 0;
   }
 `;
 
-export const MenuItem = styled.div`
-  width: 7rem;
-  height: 100%;
-  & > p {
-    font-size: 6rem;
-    margin: auto;
+export const MenuImage = styled.div`
+  height: 6rem;
+  width: 6rem;
+  background: url(${props => props.src}) no-repeat center center;
+  background-size: 80%;
+  @media (min-width: 1300px) {
+    height: 8rem;
+    width: 8rem;
   }
 `;
 

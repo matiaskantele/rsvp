@@ -49,9 +49,16 @@
       "decline": "Can't",
       "name": "Name",
       "namePlaceholder": "Bilbo Baggins",
+      "menu": "Dinner menu",
+      "chicken": "Chicken",
+      "pork": "Pork",
+      "vege": "Vege",
+      "dietaryRestrictions": "Dietary restrictions",
+      "dietaryRestrictionsPlaceholder": "Dairy-free, Gluten-free...",
       "message": "Message",
       "messagePlaceholder": "Voluntary wishes to the couple...",
-      "menuPreference": "Food preference",
+      "songs": "Song wishes",
+      "songsPlaceholder": "What should our DJ play?",
       "submitRsvp": "Submit RSVP"
     }
   },
@@ -89,9 +96,17 @@
       "attend": "Tulen",
       "decline": "En pysty",
       "name": "Nimi",
+      "menu": "Illallismenu",
+      "dietaryRestrictions": "Ruokavalion rajoitukset",
+      "dietaryRestrictionsPlaceholder": "Maidoton, Gluteeniton...",
       "message": "Viesti",
       "messagePlaceholder": "Vapaaehtoiset toivotukset pariskunnalle...",
       "menuPreference": "Ruokatoive",
+      "chicken": "Kana",
+      "pork": "Possu",
+      "vege": "Vege",
+      "songs": "Musiikkitoiveet",
+      "songsPlaceholder": "Mitä DJ:n tulisi soittaa?",
       "submitRsvp": "Lähetä RSVP"
     }
   },
@@ -142,9 +157,17 @@
       "attend": "идващ",
       "decline": "не мога",
       "name": "име",
+      "menu": "Меню за вечеря",
+      "chicken": "Пиле",
+      "pork": "Свинско",
+      "vege": "вегетариански",
+      "dietaryRestrictions": "Диетични ограничения",
+      "dietaryRestrictionsPlaceholder": "Без млечни продукти, без глутен...",
       "message": "Посланието",
       "messagePlaceholder": "Доброволни пожелания към двойката...",
       "menuPreference": "Предпочитания за менюто",
+      "songs": "Песни пожелания",
+      "songsPlaceholder": "Какво трябва да свири нашият DJ?",
       "submitRsvp": "Изпращане RSVP"
     }
   }
