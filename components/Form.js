@@ -95,10 +95,10 @@ const rsvpForm = ({ selected, attending }) => {
     </NetlifyFields>
   );
 
-  const attendingFields = <AnimatedContainer>{nameField}</AnimatedContainer>;
+  const attendingFields = <>{nameField}</>;
 
   const declineFields = (
-    <AnimatedContainer>
+    <>
       {nameField}
       <TextArea
         label={t("message")}
@@ -106,7 +106,7 @@ const rsvpForm = ({ selected, attending }) => {
         rows="5"
         placeholder={t("messagePlaceholder")}
       />
-    </AnimatedContainer>
+    </>
   );
 
   return (
