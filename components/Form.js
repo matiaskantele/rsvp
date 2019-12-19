@@ -5,7 +5,7 @@ import * as Yup from "yup";
 // import DatePicker from "./DatePicker";
 import {
   Form,
-  NetlifyFields,
+  HiddenInputsForNetlifyForms,
   AnimatedContainer,
   Label,
   Input,
@@ -84,15 +84,12 @@ const rsvpForm = ({ selected, attending }) => {
     />
   );
 
-  const generateInput = array => array.map(i => <input name={i} key={i} />);
-
   const netlifyFields = (
-    <NetlifyFields>
-      <input name="attending" />
-      {attending
-        ? generateInput(["menu", "allergies", "message"])
-        : generateInput(["menu", "allergies"])}
-    </NetlifyFields>
+    <HiddenInputsForNetlifyForms>
+      {["name", "attending", "menu", "allergies", "message"].map(i => (
+        <input name={i} key={i} />
+      ))}
+    </HiddenInputsForNetlifyForms>
   );
 
   const attendingFields = <>{nameField}</>;
@@ -123,14 +120,16 @@ const rsvpForm = ({ selected, attending }) => {
       {({ dirty, isValid, isSubmitting, handleSubmit }) => (
         <Form name="rsvp" data-netlify="true" onSubmit={handleSubmit}>
           {netlifyFields}
-          {selected && (attending ? attendingFields : declineFields)}
-          {selected && (
-            <AnimatedContainer>
-              <Button type="submit">
-                {isSubmitting ? <LoadingHeart /> : t("submitRsvp")}
-              </Button>
-            </AnimatedContainer>
-          )}
+          <AnimatedContainer>
+            {selected && (
+              <>
+                {attending ? attendingFields : declineFields}
+                <Button type="submit">
+                  {isSubmitting ? <LoadingHeart /> : t("submitRsvp")}
+                </Button>
+              </>
+            )}
+          </AnimatedContainer>
         </Form>
       )}
     </Formik>

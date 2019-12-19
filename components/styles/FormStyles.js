@@ -25,7 +25,7 @@ export const Form = styled.form`
   }
 `;
 
-export const NetlifyFields = styled.div`
+export const HiddenInputsForNetlifyForms = styled.div`
   display: none;
 `;
 
