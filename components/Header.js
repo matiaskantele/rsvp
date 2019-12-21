@@ -10,27 +10,24 @@ Router.onRouteChangeStart = () => NProgress.start();
 Router.onRouteChangeComplete = () => NProgress.done();
 Router.onRouteCHangeError = () => NProgress.done();
 
-const Logo = styled.h1`
-  font-size: 3rem;
-  margin: 0.25rem 0 0.25rem 2rem;
-  position: relative;
-  z-index: 2;
-  line-height: 1.5;
-  a {
-    padding: 0.5rem;
+const Logo = styled.div`
+  font-family: "Marck Script", cursive;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+  & > a {
     color: ${props => props.theme.black};
-    text-transform: uppercase;
-    text-decoration: none;
+    font-size: 4rem;
   }
-  @media (max-width: 1300px) {
-    margin: 0;
-    text-align: center;
+  @media (min-width: 1300px) {
+    margin-left: 3rem;
   }
 `;
 
 const StyledHeader = styled.header`
   .bar {
-    z-index: 99;
     background-color: white;
     border-bottom: 2px solid ${props => props.theme.black};
     display: grid;

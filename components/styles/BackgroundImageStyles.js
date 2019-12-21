@@ -3,10 +3,10 @@ import styled, { keyframes } from "styled-components";
 const kenburns = keyframes`
   0% {
     transform: scale(1) translateY(0);
-    transform-origin: 60% 20%;
+    transform-origin: 60% 22%;
   }
   100% {
-    transform: scale(1.4) translateY(-1.5rem);
+    transform: scale(1.4) translateY(-3rem);
     transform-origin: 70% 22%;
   }
 `;
@@ -23,5 +23,5 @@ export const BackgroundImage = styled.div`
   background-attachment: fixed;
   background-position: center;
   filter: contrast(90%) brightness(50%) opacity(40%);
-  animation: ${kenburns} 10s ease-out both;
+  animation: ${kenburns} 10s ease-in-out 1s both;
 `;
