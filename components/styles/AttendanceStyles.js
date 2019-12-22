@@ -5,7 +5,7 @@ export const Attendance = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin: 1rem 0;
+  margin-bottom: 2rem;
   & > button {
     position: relative;
     height: 5rem;

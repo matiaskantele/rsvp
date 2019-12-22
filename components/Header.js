@@ -18,7 +18,6 @@ const Logo = styled.div`
   align-items: center;
   margin-bottom: 1rem;
   & > a {
-    color: ${props => props.theme.black};
     font-size: 4rem;
   }
   @media (min-width: 1300px) {

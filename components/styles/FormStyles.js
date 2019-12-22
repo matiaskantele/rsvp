@@ -16,12 +16,12 @@ export const Form = styled.form`
 
   [type="radio"] + div {
     cursor: pointer;
-    outline: 0.125rem solid ${props => props.theme.lightgrey};
+    border: 0.2rem solid ${props => props.theme.lightgrey};
     text-align: center;
   }
 
   [type="radio"]:checked + div {
-    outline: 0.25rem solid ${props => props.theme.black};
+    border: 0.3rem solid ${props => props.theme.black};
   }
 `;
 
@@ -31,21 +31,19 @@ export const Hidden = styled.div`
 
 const puffIn = keyframes`
   0% {
-    transform: scale(1.5);
+    transform: scale(1.2);
     transform-origin: 50% 0%;
-    filter: blur(4px);
     opacity: 0;
   }
   100% {
     transform: scale(1);
     transform-origin: 50% 0%;
-    filter: blur(0px);
     opacity: 1;
   }
 `;
 
 export const AnimatedContainer = styled.div`
-  animation: ${puffIn} 0.7s cubic-bezier(0.47, 0, 0.745, 0.715) 0.2s both;
+  animation: ${puffIn} 0.7s linear ease-in-out both;
 `;
 
 export const Label = styled.label`
@@ -55,24 +53,30 @@ export const Label = styled.label`
 `;
 
 export const Input = styled.input`
-  height: 4rem;
+  height: 4.5rem;
   width: calc(100% - 2rem);
   margin: 0 0 2rem 2rem;
   padding-left: 1rem;
-  border: 2px solid ${props => props.theme.lightgrey};
-  border-radius: 1rem;
+  border: 0.2rem solid ${props => props.theme.lightgrey};
+  border-radius: 2px;
   font-size: 2rem;
   font-family: "Montserrat";
+  &::placeholder {
+    color: ${props => props.theme.placeholder};
+  }
 `;
 
 export const StyledTextArea = styled.textarea`
   width: calc(100% - 2rem);
   margin: 0 0 2rem 2rem;
   border: 0.2rem solid ${props => props.theme.lightgrey};
-  border-radius: 1rem;
+  border-radius: 0.2rem;
   padding: 1rem;
   font-size: 2rem;
   font-family: "Montserrat";
+  &::placeholder {
+    color: ${props => props.theme.placeholder};
+  }
 `;
 
 export const ErrorMessage = styled.div`

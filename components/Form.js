@@ -1,8 +1,9 @@
 import { useTranslation } from "react-i18next";
-import { Formik, useField } from "formik";
+import { Formik, useField, useFormikContext } from "formik";
 import * as Yup from "yup";
+import moment from "moment";
 
-// import DatePicker from "./DatePicker";
+import DatePicker from "./DatePicker";
 import {
   Form,
   Hidden,
@@ -20,8 +21,9 @@ import LoadingHeart from "./LoadingHeart";
 const hiddenInputsForNetlifyForms = (
   <Hidden>
     {[
-      "attending",
       "name",
+      "attending",
+      "staying",
       "menu",
       "dietaryRestrictions",
       "message",
@@ -70,6 +72,16 @@ const RadioSelection = ({ label, ...props }) => {
   );
 };
 
+const DateSelection = ({ label }) => {
+  const context = useFormikContext();
+  return (
+    <>
+      <Label htmlFor={label}>{label}</Label>
+      <DatePicker id="dateRange" context={context} />
+    </>
+  );
+};
+
 const validationSchema = Yup.object().shape({
   name: Yup.string().required("Who dis?"),
   menu: Yup.string(),
@@ -91,6 +103,8 @@ const rsvpForm = ({ selected, attending }) => {
   const { t } = useTranslation();
 
   const submit = values => {
+    const arriving = moment(values.staying.arriving).format("D.M.");
+    const departing = moment(values.staying.departing).format("D.M.");
     const options = {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -98,6 +112,7 @@ const rsvpForm = ({ selected, attending }) => {
         "form-name": "rsvp",
         attending: attending,
         ...values,
+        staying: `${arriving}-${departing}`,
       }),
     };
     console.log(options);
@@ -113,6 +128,12 @@ const rsvpForm = ({ selected, attending }) => {
       type="text"
       placeholder={t("namePlaceholder")}
     />
+  );
+
+  const dateRangePicker = (
+    <>
+      <DateSelection label={t("staying")} />
+    </>
   );
 
   const textArea = (
@@ -166,6 +187,7 @@ const rsvpForm = ({ selected, attending }) => {
   const attendingFields = (
     <>
       {nameInput}
+      {dateRangePicker}
       {menuSelection}
       {dietaryRestrictions}
       {textArea}
@@ -184,6 +206,7 @@ const rsvpForm = ({ selected, attending }) => {
     <Formik
       initialValues={{
         name: "",
+        staying: { arriving: null, departing: null },
         menu: "",
         dietaryRestrictions: "",
         message: "",
@@ -192,7 +215,7 @@ const rsvpForm = ({ selected, attending }) => {
       validationSchema={validationSchema}
       onSubmit={submit}
     >
-      {({ dirty, isValid, isSubmitting, handleSubmit }) => (
+      {({ dirty, isValid, setFieldValue, isSubmitting, handleSubmit }) => (
         <Form name="rsvp" data-netlify="true" onSubmit={handleSubmit}>
           {hiddenInputsForNetlifyForms}
           {selected && (
