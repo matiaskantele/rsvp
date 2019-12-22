@@ -92,7 +92,7 @@ const rsvpForm = ({ selected, attending }) => {
   const { t } = useTranslation();
 
   const validationSchema = Yup.object().shape({
-    name: Yup.string().required(`${t("nameRequired")}`),
+    name: Yup.string().required(t("nameRequired")),
     menu: Yup.string(),
     dietaryRestrictions: Yup.string().max(
       256,

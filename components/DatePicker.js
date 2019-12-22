@@ -24,17 +24,22 @@ const StylingWrapper = styled.div`
     &::placeholder {
       color: ${props => props.theme.placeholder};
     }
-    & .DateInput_input {
-      font-family: "Montserrat";
-      color: inherit;
-      line-height: 1;
+    & .DateInput {
       width: 100%;
     }
-    & .DayPicker_focusRegion {
-      margin: 0 auto;
+    & .DateInput_input {
+      font-family: "Montserrat";
+      line-height: 1;
+      text-align: center;
     }
-    & .DateRangePicker_picker {
-      left: calc(50% - 309px);
+    & .DateInput_fang {
+      left: calc(50% - 1rem);
+    }
+    & > .DateRangePicker_picker {
+      left: calc(50% - 147px) !important;
+      @media (min-width: 600px) {
+        left: calc(50% - 309px) !important;
+      }
     }
   }
 `;
@@ -54,9 +59,9 @@ const DateRange = ({ context }) => {
     <StylingWrapper>
       <DateRangePicker
         startDate={context.values.staying.arriving}
-        startDateId="your_unique_start_date_id"
+        startDateId={t("arriving")}
         endDate={context.values.staying.departing}
-        endDateId="your_unique_end_date_id"
+        endDateId={t("departing")}
         onDatesChange={({ startDate, endDate }) => {
           context.setFieldValue("staying", {
             arriving: startDate,
@@ -66,7 +71,7 @@ const DateRange = ({ context }) => {
         focusedInput={focusedInput}
         onFocusChange={focusedInput => setFocusedInput(focusedInput)}
         orientation={
-          document.documentElement.clientWidth > 685 ? "horizontal" : "vertical"
+          document.documentElement.clientWidth > 600 ? "horizontal" : "vertical"
         }
         firstDayOfWeek={1}
         minimumNights={0}
@@ -76,6 +81,7 @@ const DateRange = ({ context }) => {
         initialVisibleMonth={() =>
           moment("2020-05-03 17:00:00", moment.ISO_8601)
         }
+        readOnly={true}
       />
     </StylingWrapper>
   );
