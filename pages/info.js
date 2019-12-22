@@ -17,7 +17,7 @@ const Info = () => {
   const { t } = useTranslation();
 
   return (
-    <div>
+    <>
       <Section title={t("date")} image="date.svg">
         <h2>{t("saturday")}</h2>
       </Section>
@@ -59,7 +59,7 @@ const Info = () => {
       <Section title={t("map")} image="map.svg">
         <Map />
       </Section>
-    </div>
+    </>
   );
 };
 

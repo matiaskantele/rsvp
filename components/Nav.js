@@ -12,10 +12,10 @@ const Nav = () => {
       <Link href="/">
         <a>{t("invite")}</a>
       </Link>
-      <Link href="info">
+      <Link href="/info">
         <a>{t("info")}</a>
       </Link>
-      <Link href="rsvp">
+      <Link href="/rsvp">
         <a>{t("rsvp")}</a>
       </Link>
     </NavStyles>

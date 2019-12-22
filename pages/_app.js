@@ -1,6 +1,7 @@
 import App from "next/app";
 import { ThemeProvider, createGlobalStyle } from "styled-components";
 import "../common/i18n";
+import "../public/empty.css";
 
 import Page from "../components/Page";
 

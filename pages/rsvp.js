@@ -8,10 +8,10 @@ import {
 } from "../components/styles/AttendanceStyles";
 import Form from "../components/Form";
 
-const RSVP = () => {
+const Rsvp = () => {
   const { t } = useTranslation();
   const [selected, setSelected] = useState(false);
-  const [attending, setAttending] = useState("");
+  const [attending, setAttending] = useState(null);
 
   return (
     <>
@@ -37,9 +37,9 @@ const RSVP = () => {
           <span>{t("decline")}</span>
         </DeclineButton>
       </Attendance>
-      <Form selected={selected} attending={attending} />
+      {selected ? <Form selected={selected} attending={attending} /> : null}
     </>
   );
 };
 
-export default RSVP;
+export default Rsvp;
