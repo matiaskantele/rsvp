@@ -16,6 +16,11 @@ const StylingWrapper = styled.div`
   & .DateRangePickerInput {
     border: none;
     background: none;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
     &::placeholder {
       color: ${props => props.theme.placeholder};
     }
@@ -23,9 +28,13 @@ const StylingWrapper = styled.div`
       font-family: "Montserrat";
       color: inherit;
       line-height: 1;
+      width: 100%;
     }
     & .DayPicker_focusRegion {
       margin: 0 auto;
+    }
+    & .DateRangePicker_picker {
+      left: calc(50% - 309px);
     }
   }
 `;

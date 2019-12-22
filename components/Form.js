@@ -82,17 +82,6 @@ const DateSelection = ({ label }) => {
   );
 };
 
-const validationSchema = Yup.object().shape({
-  name: Yup.string().required("Who dis?"),
-  menu: Yup.string(),
-  dietaryRestrictions: Yup.string().max(
-    256,
-    "I feel you, but the limit here is 256 characters..."
-  ),
-  message: Yup.string().max(256, "Message too long."),
-  songs: Yup.string().max(256, "The night is only so long..."),
-});
-
 const encode = data => {
   return Object.keys(data)
     .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
@@ -101,6 +90,17 @@ const encode = data => {
 
 const rsvpForm = ({ selected, attending }) => {
   const { t } = useTranslation();
+
+  const validationSchema = Yup.object().shape({
+    name: Yup.string().required(`${t("nameRequired")}`),
+    menu: Yup.string(),
+    dietaryRestrictions: Yup.string().max(
+      256,
+      "I feel you, but the limit here is 256 characters..."
+    ),
+    message: Yup.string().max(256, "Message too long."),
+    songs: Yup.string().max(256, "The night is only so long..."),
+  });
 
   const submit = values => {
     const arriving = moment(values.staying.arriving).format("D.M.");
@@ -221,7 +221,7 @@ const rsvpForm = ({ selected, attending }) => {
           {selected && (
             <AnimatedContainer>
               {attending ? attendingFields : declineFields}
-              <Button type="submit">
+              <Button type="submit" attending={attending}>
                 {isSubmitting ? <LoadingHeart /> : t("submitRsvp")}
               </Button>
             </AnimatedContainer>

@@ -80,11 +80,12 @@ export const StyledTextArea = styled.textarea`
 `;
 
 export const ErrorMessage = styled.div`
-  height: 4rem;
-  text-align: right;
-  border-radius: 1rem;
+  position: relative;
+  top: -2rem;
+  float: right;
   pointer-events: none;
   color: red;
+  font-size: 1.8rem;
   font-weight: 500;
 `;
 
@@ -115,12 +116,13 @@ export const Button = styled.button`
   background: none;
   height: 6rem;
   width: 25rem;
-  border: 0.4rem solid ${props => props.theme.black};
+  border: 0.2rem solid ${props => props.theme.lightgrey};
   border-radius: 1.5rem;
   margin: 2rem auto;
   font-size: 2rem;
   cursor: pointer;
-  &:disabled {
-    background: red;
+  &:hover {
+    border: 0.2rem solid ${props => props.theme.black};
+    background-color: ${props => (props.attending ? "#A5E9D4" : "#FEB7C0")};
   }
 `;
