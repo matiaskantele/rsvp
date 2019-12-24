@@ -28,7 +28,7 @@ const hiddenInputsForNetlifyForms = (
       "name",
       "attending",
       "staying",
-      "needShuttle",
+      "shuttle",
       "menu",
       "dietaryRestrictions",
       "songs",
@@ -118,7 +118,7 @@ const rsvpForm = ({ selected, attending }) => {
     ),
     message: Yup.string().max(256, "Message too long."),
     songs: Yup.string().max(256, "The night is only so long..."),
-    needShuttle: Yup.boolean(),
+    shuttle: Yup.boolean(),
   });
 
   const submit = values => {
@@ -132,7 +132,7 @@ const rsvpForm = ({ selected, attending }) => {
         attending: attending,
         ...values,
         staying: `${arriving}-${departing}${
-          values.needShuttle ? ", need help getting there" : ""
+          values.shuttle ? " <needs ride>" : ""
         }`,
       }),
     };
@@ -208,7 +208,7 @@ const rsvpForm = ({ selected, attending }) => {
   const airportShuttle = (
     <>
       <Label htmlFor="airportShuttle">{t("airportShuttleLabel")}</Label>
-      <Checkbox id="airportShuttle" name="needShuttle">
+      <Checkbox id="airportShuttle" name="shuttle">
         {t("needShuttle")}
       </Checkbox>
     </>
@@ -238,7 +238,7 @@ const rsvpForm = ({ selected, attending }) => {
       initialValues={{
         name: "",
         staying: { arriving: null, departing: null },
-        needShuttle: false,
+        shuttle: false,
         menu: "",
         dietaryRestrictions: "",
         message: "",
