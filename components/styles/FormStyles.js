@@ -111,6 +111,89 @@ export const MenuImage = styled.div`
   }
 `;
 
+export const CheckboxLabel = styled.label`
+  display: block;
+  margin: 0 0 2rem 2rem;
+  font-size: 2rem;
+  position: relative;
+  line-height: 4rem;
+`;
+
+export const CheckboxInput = styled.input`
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  width: 4rem;
+  height: 4rem;
+  &:checked + span {
+    background-color: black;
+    border-radius: 5px;
+    transform: rotate(0deg) scale(1);
+    opacity: 1;
+    border: 2px solid black;
+    &:after {
+      transform: rotate(45deg) scale(1);
+      opacity: 1;
+      left: 16px;
+      top: 6px;
+      width: 12px;
+      height: 24px;
+      border: solid #009bff;
+      border-width: 0 4px 4px 0;
+      background-color: transparent;
+      border-radius: 0;
+    }
+    &:before {
+      left: -6px;
+      top: -6px;
+      width: 48px;
+      height: 48px;
+      border-radius: 2px;
+      transform: scale(3);
+      opacity: 0;
+      z-index: 999;
+      transition: all 0.3s ease-out;
+    }
+  }
+`;
+
+export const CheckboxSpan = styled.span`
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 48px;
+  width: 48px;
+  background-color: transparent;
+  border-radius: 2px;
+  transition: all 0.3s ease-out;
+  border: 2px solid black;
+  &:after {
+    position: absolute;
+    content: "";
+    left: 24px;
+    top: 24px;
+    height: 0px;
+    width: 0px;
+    border-radius: 5px;
+    border: solid #009bff;
+    border-width: 0 6px 6px 0;
+    transform: rotate(0deg) scale(0);
+    opacity: 1;
+    transition: all 0.3s ease-out;
+  }
+  &:before {
+    position: absolute;
+    content: "";
+    left: 20px;
+    top: 20px;
+    width: 0px;
+    height: 0px;
+    border-radius: 5px;
+    border: 2px solid black;
+    transform: scale(0);
+  }
+`;
+
 export const Button = styled.button`
   display: block;
   background: none;

@@ -14,6 +14,9 @@ import {
   ErrorMessage,
   MenuGroup,
   MenuImage,
+  CheckboxLabel,
+  CheckboxInput,
+  CheckboxSpan,
   Button,
 } from "./styles/FormStyles";
 import LoadingHeart from "./LoadingHeart";
@@ -78,6 +81,19 @@ const DateSelection = ({ label }) => {
     <>
       <Label htmlFor={label}>{label}</Label>
       <DatePicker id="dateRange" context={context} />
+    </>
+  );
+};
+
+const Checkbox = ({ children, ...props }) => {
+  const [field] = useField({ ...props, type: "checkbox" });
+  return (
+    <>
+      <CheckboxLabel>
+        <CheckboxInput type="checkbox" {...field} {...props} />
+        <CheckboxSpan />
+        {children}
+      </CheckboxLabel>
     </>
   );
 };
@@ -184,14 +200,24 @@ const rsvpForm = ({ selected, attending }) => {
     />
   );
 
+  const airportShuttle = (
+    <>
+      <Label htmlFor="airportShuttle">{t("airportShuttleLabel")}</Label>
+      <Checkbox id="airportShuttle" name="needShuttle">
+        Need airport shuttle
+      </Checkbox>
+    </>
+  );
+
   const attendingFields = (
     <>
       {nameInput}
-      {dateRangePicker}
       {menuSelection}
       {dietaryRestrictions}
-      {textArea}
+      {dateRangePicker}
+      {airportShuttle}
       {songs}
+      {textArea}
     </>
   );
 
@@ -207,6 +233,7 @@ const rsvpForm = ({ selected, attending }) => {
       initialValues={{
         name: "",
         staying: { arriving: null, departing: null },
+        needShuttle: false,
         menu: "",
         dietaryRestrictions: "",
         message: "",
