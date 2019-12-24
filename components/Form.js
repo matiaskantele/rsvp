@@ -118,6 +118,7 @@ const rsvpForm = ({ selected, attending }) => {
     ),
     message: Yup.string().max(256, "Message too long."),
     songs: Yup.string().max(256, "The night is only so long..."),
+    needShuttle: Yup.boolean(),
   });
 
   const submit = values => {
@@ -130,8 +131,9 @@ const rsvpForm = ({ selected, attending }) => {
         "form-name": "rsvp",
         attending: attending,
         ...values,
-        staying: `${arriving}-${departing}`,
-        needShuttle: values.needShuttle ? "yes" : "no",
+        staying: `${arriving}-${departing}${
+          values.needShuttle ? ", need help getting there" : ""
+        }`,
       }),
     };
     console.log(options);
