@@ -17,6 +17,7 @@ import {
   CheckboxLabel,
   CheckboxInput,
   CheckboxSpan,
+  CheckboxText,
   Button,
 } from "./styles/FormStyles";
 import LoadingHeart from "./LoadingHeart";
@@ -27,10 +28,11 @@ const hiddenInputsForNetlifyForms = (
       "name",
       "attending",
       "staying",
+      "needShuttle",
       "menu",
       "dietaryRestrictions",
-      "message",
       "songs",
+      "message",
     ].map(i => (
       <input name={i} key={i} />
     ))}
@@ -92,7 +94,7 @@ const Checkbox = ({ children, ...props }) => {
       <CheckboxLabel>
         <CheckboxInput type="checkbox" {...field} {...props} />
         <CheckboxSpan />
-        {children}
+        <CheckboxText>{children}</CheckboxText>
       </CheckboxLabel>
     </>
   );
@@ -204,7 +206,7 @@ const rsvpForm = ({ selected, attending }) => {
     <>
       <Label htmlFor="airportShuttle">{t("airportShuttleLabel")}</Label>
       <Checkbox id="airportShuttle" name="needShuttle">
-        Need airport shuttle
+        {t("needShuttle")}
       </Checkbox>
     </>
   );

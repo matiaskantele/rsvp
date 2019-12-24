@@ -10,6 +10,9 @@ const StylingWrapper = styled.div`
   margin: 0 0 2rem 2rem;
   border: 0.2rem solid ${props => props.theme.lightgrey};
   border-radius: 0.2rem;
+  &:focus-within {
+    border: 0.2rem solid ${props => props.theme.black};
+  }
   & .DateRangePicker {
     width: 100%;
   }

@@ -20,8 +20,9 @@ export const Form = styled.form`
     text-align: center;
   }
 
-  [type="radio"]:checked + div {
-    border: 0.3rem solid ${props => props.theme.black};
+  [type="radio"]:checked + div,
+  [type="radio"]:focus + div {
+    border: 0.2rem solid ${props => props.theme.black};
   }
 `;
 
@@ -64,6 +65,9 @@ export const Input = styled.input`
   &::placeholder {
     color: ${props => props.theme.placeholder};
   }
+  &:focus {
+    border: 2px solid ${props => props.theme.black};
+  }
 `;
 
 export const StyledTextArea = styled.textarea`
@@ -76,6 +80,9 @@ export const StyledTextArea = styled.textarea`
   font-family: "Montserrat";
   &::placeholder {
     color: ${props => props.theme.placeholder};
+  }
+  &:focus {
+    border: 2px solid ${props => props.theme.black};
   }
 `;
 
@@ -104,7 +111,7 @@ export const MenuImage = styled.div`
   height: 6rem;
   width: 6rem;
   background: url(${props => props.src}) no-repeat center center;
-  background-size: 80%;
+  background-size: 90%;
   @media (min-width: 1300px) {
     height: 8rem;
     width: 8rem;
@@ -116,36 +123,33 @@ export const CheckboxLabel = styled.label`
   margin: 0 0 2rem 2rem;
   font-size: 2rem;
   position: relative;
-  line-height: 4rem;
+  cursor: pointer;
 `;
 
 export const CheckboxInput = styled.input`
   position: absolute;
   opacity: 0;
-  cursor: pointer;
-  width: 4rem;
-  height: 4rem;
+  width: 3.6rem;
+  height: 3.6rem;
   &:checked + span {
-    background-color: black;
-    border-radius: 5px;
     transform: rotate(0deg) scale(1);
     opacity: 1;
-    border: 2px solid black;
+    border: 2px solid ${props => props.theme.black};
     &:after {
       transform: rotate(45deg) scale(1);
       opacity: 1;
-      left: 16px;
-      top: 6px;
+      left: 11px;
+      top: 2px;
       width: 12px;
       height: 24px;
-      border: solid #009bff;
+      border: solid #008489;
       border-width: 0 4px 4px 0;
       background-color: transparent;
       border-radius: 0;
     }
     &:before {
-      left: -6px;
-      top: -6px;
+      left: -9px;
+      top: -9px;
       width: 48px;
       height: 48px;
       border-radius: 2px;
@@ -155,27 +159,30 @@ export const CheckboxInput = styled.input`
       transition: all 0.3s ease-out;
     }
   }
+  &:focus + span {
+    border: 2px solid ${props => props.theme.black};
+  }
 `;
 
 export const CheckboxSpan = styled.span`
   position: absolute;
   top: 0px;
   left: 0px;
-  height: 48px;
-  width: 48px;
+  height: 36px;
+  width: 36px;
   background-color: transparent;
   border-radius: 2px;
   transition: all 0.3s ease-out;
-  border: 2px solid black;
+  border: 0.2rem solid ${props => props.theme.lightgrey};
   &:after {
     position: absolute;
     content: "";
-    left: 24px;
-    top: 24px;
+    left: 18px;
+    top: 18px;
     height: 0px;
     width: 0px;
     border-radius: 5px;
-    border: solid #009bff;
+    border: solid #a5e9d4;
     border-width: 0 6px 6px 0;
     transform: rotate(0deg) scale(0);
     opacity: 1;
@@ -189,9 +196,16 @@ export const CheckboxSpan = styled.span`
     width: 0px;
     height: 0px;
     border-radius: 5px;
-    border: 2px solid black;
+    border: 2px solid ${props => props.theme.black};
     transform: scale(0);
   }
+`;
+
+export const CheckboxText = styled.span`
+  display: inline-block;
+  padding-left: 4.6rem;
+  height: 3.6rem;
+  line-height: 3.6rem;
 `;
 
 export const Button = styled.button`
@@ -204,7 +218,8 @@ export const Button = styled.button`
   margin: 2rem auto;
   font-size: 2rem;
   cursor: pointer;
-  &:hover {
+  &:hover,
+  &:focus {
     border: 0.2rem solid ${props => props.theme.black};
     background-color: ${props => (props.attending ? "#A5E9D4" : "#FEB7C0")};
   }

@@ -17,6 +17,11 @@ export const Attendance = styled.div`
     border-bottom: 1px solid ${props => props.theme.lightgrey};
     cursor: pointer;
     transform: skew(-20deg);
+    &:focus,
+    &:hover {
+      border-top: 2px solid ${props => props.theme.black};
+      border-bottom: 2px solid ${props => props.theme.black};
+    }
     & > span {
       display: inline-block;
       transform: skew(20deg);
@@ -36,6 +41,11 @@ export const AttendButton = styled.button`
     props.selected ? (props.attending ? "#A5E9D4" : "none") : "none"};
   opacity: ${props =>
     props.selected ? (props.attending ? "1.0" : "0.5") : "1.0"};
+  &:focus,
+  &:hover {
+    border-left: 2px solid ${props => props.theme.black};
+    border-right: 2px solid ${props => props.theme.black};
+  }
 `;
 
 export const DeclineButton = styled.button`
@@ -47,4 +57,9 @@ export const DeclineButton = styled.button`
     props.selected ? (!props.attending ? "none" : "#FEB7C0") : "none"};
   opacity: ${props =>
     props.selected ? (props.attending ? "1.0" : "0.5") : "1.0"};
+  &:focus,
+  &:hover {
+    border-left: 2px solid ${props => props.theme.black};
+    border-right: 2px solid ${props => props.theme.black};
+  }
 `;
