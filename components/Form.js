@@ -106,7 +106,7 @@ const encode = data => {
     .join("&");
 };
 
-const rsvpForm = ({ selected, attending }) => {
+const rsvpForm = ({ selected, attending, postSubmit }) => {
   const { t } = useTranslation();
 
   const validationSchema = Yup.object().shape({
@@ -138,7 +138,10 @@ const rsvpForm = ({ selected, attending }) => {
     };
     console.log(options);
     fetch("/", options)
-      .then(() => console.log("Form submitted!"))
+      .then(() => {
+        console.log("Form submitted successfully!");
+        postSubmit();
+      })
       .catch(error => console.log(error));
   };
 
@@ -254,7 +257,7 @@ const rsvpForm = ({ selected, attending }) => {
             <AnimatedContainer>
               {attending ? attendingFields : declineFields}
               <Button type="submit" attending={attending}>
-                {isSubmitting ? <LoadingHeart /> : t("submitRsvp")}
+                <span>{isSubmitting ? <LoadingHeart /> : t("submitRsvp")}</span>
               </Button>
             </AnimatedContainer>
           )}

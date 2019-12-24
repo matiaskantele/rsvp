@@ -214,13 +214,19 @@ export const Button = styled.button`
   height: 6rem;
   width: 25rem;
   border: 0.2rem solid ${props => props.theme.lightgrey};
-  border-radius: 1.5rem;
+  border-radius: 0.2rem;
   margin: 2rem auto;
   font-size: 2rem;
+  transform: skew(-20deg);
   cursor: pointer;
   &:hover,
   &:focus {
     border: 0.2rem solid ${props => props.theme.black};
     background-color: ${props => (props.attending ? "#A5E9D4" : "#FEB7C0")};
+  }
+  & > span {
+    display: inline-block;
+    transform: skew(20deg);
+    text-shadow: 2px 2px 5px white;
   }
 `;

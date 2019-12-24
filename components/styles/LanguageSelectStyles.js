@@ -25,6 +25,10 @@ export const LanguageButton = styled.button`
   cursor: pointer;
   filter: opacity(80%);
   transform: skew(-20deg);
+  &:hover,
+  &:focus {
+    border: 2px solid ${props => props.theme.black};
+  }
   @media (min-width: 700px) {
     height: 2.5rem;
     width: 3.5rem;
