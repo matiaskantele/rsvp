@@ -131,6 +131,7 @@ const rsvpForm = ({ selected, attending }) => {
         attending: attending,
         ...values,
         staying: `${arriving}-${departing}`,
+        needShuttle: values.needShuttle ? "yes" : "no",
       }),
     };
     console.log(options);
