@@ -134,13 +134,17 @@ const rsvpForm = ({ selected, attending, postSubmit }) => {
         staying: `${arriving}-${departing}${
           values.shuttle ? " <needs ride>" : ""
         }`,
+        shuttle: values.shuttle,
       }),
     };
     console.log(options);
     fetch("/", options)
       .then(() => {
         console.log("Form submitted successfully!");
-        postSubmit();
+        postSubmit({
+          attending: attending,
+          shuttle: values.shuttle,
+        });
       })
       .catch(error => console.log(error));
   };

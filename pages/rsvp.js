@@ -14,7 +14,7 @@ const Rsvp = () => {
   const [selected, setSelected] = useState(false);
   const [attending, setAttending] = useState(null);
   const [sent, setSent] = useState(null);
-
+  console.log(sent);
   return (
     <>
       {sent === null ? (
@@ -45,12 +45,12 @@ const Rsvp = () => {
             <Form
               selected={selected}
               attending={attending}
-              postSubmit={() => setSent(attending)}
+              postSubmit={setSent}
             />
           ) : null}
         </>
       ) : (
-        <ThankYou attending={attending} />
+        <ThankYou sent={sent} />
       )}
     </>
   );
