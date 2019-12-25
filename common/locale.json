@@ -65,7 +65,11 @@
       "messagePlaceholder": "Voluntary wishes to the couple...",
       "songs": "Song wishes",
       "songsPlaceholder": "What should our DJ play?",
-      "submitRsvp": "Submit RSVP"
+      "submitRsvp": "Submit RSVP",
+      "thankYou": "Thank You",
+      "thankYouContinues": "for letting us know!",
+      "declinedMessage": "We are sorry you can't make it.",
+      "shuttleMessage": "Airport shuttle info coming later on."
     }
   },
   "fi": {
@@ -120,7 +124,11 @@
       "vege": "Vege",
       "songs": "Musiikkitoiveet",
       "songsPlaceholder": "Mitä DJ:n tulisi soittaa?",
-      "submitRsvp": "Lähetä RSVP"
+      "submitRsvp": "Lähetä RSVP",
+      "thankYou": "Kiitoksia",
+      "thankYouContinues": "vastauksesta!",
+      "declinedMessage": "Harmi, ettette pääse paikalle.",
+      "shuttleMessage": "Ilmoitelemme lentokenttäkyydityksestä myöhemmin."
     }
   },
   "bg": {
@@ -188,7 +196,11 @@
       "menuPreference": "Предпочитания за менюто",
       "songs": "Песни пожелания",
       "songsPlaceholder": "Какво трябва да свири нашият DJ?",
-      "submitRsvp": "Изпращане RSVP"
+      "submitRsvp": "Изпращане RSVP",
+      "thankYou": "Благодаря ти",
+      "thankYouContinues": "за това да ни уведомим!",
+      "declinedMessage": "За съжаление не можете да го направите.",
+      "shuttleMessage": "Информация за летищния трансфер идва по-късно."
     }
   }
 }

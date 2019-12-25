@@ -4,12 +4,13 @@ import { ThankYouContainer } from "./styles/ThankYouStyles";
 
 const thankYou = ({ sent: { attending, shuttle } }) => {
   const { t } = useTranslation();
-  console.log(`attending: ${attending}, needShuttle: ${shuttle}`);
 
   return (
     <ThankYouContainer>
-      <h1>Attending: {attending ? "Yes" : "no"}</h1>
-      <p>Need shuttle: {shuttle ? "Yes" : "no"}</p>
+      <h1>{t("thankYou")}</h1>
+      <h1>{t("thankYouContinues")}</h1>
+      {!attending && <p>{t("declinedMessage")}</p>}
+      {shuttle && <p>{t("shuttleMessage")}</p>}
     </ThankYouContainer>
   );
 };

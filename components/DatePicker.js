@@ -51,13 +51,6 @@ const DateRange = ({ context }) => {
   const { t } = useTranslation();
   const [focusedInput, setFocusedInput] = useState(null);
 
-  useEffect(() => {
-    console.log("Hello fellow nerd!");
-    console.log(
-      "The warnings here are caused by react-dates wanting to support older versions of React."
-    );
-  }, []);
-
   return (
     <StylingWrapper>
       <DateRangePicker
