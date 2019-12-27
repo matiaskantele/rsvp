@@ -18,7 +18,7 @@ class AppInit extends App {
       black: "#393939",
       grey: "#3A3A3A",
       lightgrey: "#E1E1E1",
-      placeholder: "#484848",
+      placeholder: "#797979",
       offWhite: "#EDEDED",
       gold: "#CA9E46",
       maxWidth: "900px",

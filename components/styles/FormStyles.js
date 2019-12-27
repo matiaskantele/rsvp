@@ -70,6 +70,29 @@ export const Input = styled.input`
   }
 `;
 
+export const CompanionButton = styled.button`
+  display: block;
+  background: none;
+  height: 3rem;
+  width: 50%;
+  border: 0.2rem solid ${props => props.theme.lightgrey};
+  border-radius: 0.2rem;
+  margin: 0 auto 2rem auto;
+  font-size: 2rem;
+  transform: skew(-20deg);
+  cursor: pointer;
+  &:hover,
+  &:focus {
+    border: 0.2rem solid ${props => props.theme.black};
+  }
+  & > span {
+    display: inline-block;
+    transform: skew(20deg);
+    height: 100%;
+    line-height: 3rem;
+  }
+`;
+
 export const StyledTextArea = styled.textarea`
   width: calc(100% - 2rem);
   margin: 0 0 2rem 2rem;

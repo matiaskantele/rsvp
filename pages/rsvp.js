@@ -14,7 +14,7 @@ const Rsvp = () => {
   const [selected, setSelected] = useState(false);
   const [attending, setAttending] = useState(null);
   const [sent, setSent] = useState(null);
-  console.log(sent);
+
   return (
     <>
       {sent === null ? (
