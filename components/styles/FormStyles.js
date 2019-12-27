@@ -17,6 +17,7 @@ export const Form = styled.form`
   [type="radio"] + div {
     cursor: pointer;
     border: 0.2rem solid ${props => props.theme.lightgrey};
+    border-radius: 0.2rem;
     text-align: center;
   }
 
@@ -28,6 +29,20 @@ export const Form = styled.form`
 
 export const Hidden = styled.div`
   display: none;
+`;
+
+export const Label = styled.label`
+  display: block;
+  margin-bottom: 1rem;
+  font-size: 2rem;
+`;
+
+export const SectionContainer = styled.div`
+  position: relative;
+  margin: 0 0 2rem 2rem;
+  & > input:nth-of-type(2) {
+    margin-top: 1rem;
+  }
 `;
 
 const puffIn = keyframes`
@@ -45,29 +60,6 @@ const puffIn = keyframes`
 
 export const AnimatedContainer = styled.div`
   animation: ${puffIn} 0.7s linear ease-in-out both;
-`;
-
-export const Label = styled.label`
-  display: block;
-  margin-bottom: 1rem;
-  font-size: 2rem;
-`;
-
-export const Input = styled.input`
-  height: 4.5rem;
-  width: calc(100% - 2rem);
-  margin: 0 0 2rem 2rem;
-  padding-left: 1rem;
-  border: 0.2rem solid ${props => props.theme.lightgrey};
-  border-radius: 2px;
-  font-size: 2rem;
-  font-family: "Montserrat";
-  &::placeholder {
-    color: ${props => props.theme.placeholder};
-  }
-  &:focus {
-    border: 2px solid ${props => props.theme.black};
-  }
 `;
 
 export const CompanionButton = styled.button`
@@ -93,142 +85,19 @@ export const CompanionButton = styled.button`
   }
 `;
 
-export const StyledTextArea = styled.textarea`
-  width: calc(100% - 2rem);
-  margin: 0 0 2rem 2rem;
-  border: 0.2rem solid ${props => props.theme.lightgrey};
-  border-radius: 0.2rem;
-  padding: 1rem;
-  font-size: 2rem;
-  font-family: "Montserrat";
-  &::placeholder {
-    color: ${props => props.theme.placeholder};
-  }
-  &:focus {
-    border: 2px solid ${props => props.theme.black};
-  }
-`;
-
-export const ErrorMessage = styled.div`
-  position: relative;
-  top: -2rem;
-  float: right;
+export const CustomErrorMessage = styled.span`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4.5rem;
   pointer-events: none;
   color: red;
   font-size: 1.8rem;
   font-weight: 500;
-`;
-
-export const MenuGroup = styled.div`
-  display: flex;
-  width: calc(100% - 2rem);
-  align-items: center;
-  justify-content: space-between;
-  margin: 0 0 2rem 2rem;
-  & > label {
-    margin: 0;
-  }
-`;
-
-export const MenuImage = styled.div`
-  height: 6rem;
-  width: 6rem;
-  background: url(${props => props.src}) no-repeat center center;
-  background-size: 90%;
-  @media (min-width: 1300px) {
-    height: 8rem;
-    width: 8rem;
-  }
-`;
-
-export const CheckboxLabel = styled.label`
-  display: block;
-  margin: 0 0 2rem 2rem;
-  font-size: 2rem;
-  position: relative;
-  cursor: pointer;
-`;
-
-export const CheckboxInput = styled.input`
-  position: absolute;
-  opacity: 0;
-  width: 3.6rem;
-  height: 3.6rem;
-  &:checked + span {
-    transform: rotate(0deg) scale(1);
-    opacity: 1;
-    border: 2px solid ${props => props.theme.black};
-    &:after {
-      transform: rotate(45deg) scale(1);
-      opacity: 1;
-      left: 11px;
-      top: 2px;
-      width: 12px;
-      height: 24px;
-      border: solid #008489;
-      border-width: 0 4px 4px 0;
-      background-color: transparent;
-      border-radius: 0;
-    }
-    &:before {
-      left: -9px;
-      top: -9px;
-      width: 48px;
-      height: 48px;
-      border-radius: 2px;
-      transform: scale(3);
-      opacity: 0;
-      z-index: 999;
-      transition: all 0.3s ease-out;
-    }
-  }
-  &:focus + span {
-    border: 2px solid ${props => props.theme.black};
-  }
-`;
-
-export const CheckboxSpan = styled.span`
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  height: 36px;
-  width: 36px;
-  background-color: transparent;
-  border-radius: 2px;
-  transition: all 0.3s ease-out;
-  border: 0.2rem solid ${props => props.theme.lightgrey};
-  &:after {
-    position: absolute;
-    content: "";
-    left: 18px;
-    top: 18px;
-    height: 0px;
-    width: 0px;
-    border-radius: 5px;
-    border: solid #a5e9d4;
-    border-width: 0 6px 6px 0;
-    transform: rotate(0deg) scale(0);
-    opacity: 1;
-    transition: all 0.3s ease-out;
-  }
-  &:before {
-    position: absolute;
-    content: "";
-    left: 20px;
-    top: 20px;
-    width: 0px;
-    height: 0px;
-    border-radius: 5px;
-    border: 2px solid ${props => props.theme.black};
-    transform: scale(0);
-  }
-`;
-
-export const CheckboxText = styled.span`
-  display: inline-block;
-  padding-left: 4.6rem;
-  height: 3.6rem;
-  line-height: 3.6rem;
+  border: 0.2rem solid transparent;
+  border-radius: 0.2rem;
+  box-shadow: 0 0 0 0.5rem red;
 `;
 
 export const Button = styled.button`

@@ -7,7 +7,6 @@ import "react-dates/lib/css/_datepicker.css";
 import styled from "styled-components";
 
 const StylingWrapper = styled.div`
-  margin: 0 0 2rem 2rem;
   border: 0.2rem solid ${props => props.theme.lightgrey};
   border-radius: 0.2rem;
   &:focus-within {
@@ -47,19 +46,19 @@ const StylingWrapper = styled.div`
   }
 `;
 
-const DateRange = ({ context }) => {
+const DateRange = ({ staying, onSelect }) => {
   const { t } = useTranslation();
   const [focusedInput, setFocusedInput] = useState(null);
 
   return (
     <StylingWrapper>
       <DateRangePicker
-        startDate={context.values.staying.arriving}
+        startDate={staying.arriving}
         startDateId={t("arriving")}
-        endDate={context.values.staying.departing}
+        endDate={staying.departing}
         endDateId={t("departing")}
         onDatesChange={({ startDate, endDate }) => {
-          context.setFieldValue("staying", {
+          onSelect({
             arriving: startDate,
             departing: endDate,
           });

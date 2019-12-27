@@ -48,6 +48,7 @@
       "attend": "Coming",
       "decline": "Can't",
       "name": "Name",
+      "nameMultiple": "Names",
       "nameRequired": "This field is required.",
       "namePlaceholder": "Firstname Lastname",
       "companion": "Companion",

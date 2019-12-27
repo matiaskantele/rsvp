@@ -1,28 +1,24 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Formik, useField, useFormikContext } from "formik";
+import { Formik, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import moment from "moment";
 
+import TextInput from "./TextInput";
+import RadioSelection from "./RadioSelection";
 import DatePicker from "./DatePicker";
+import Checkbox from "./Checkbox";
+import LoadingHeart from "./LoadingHeart";
 import {
   Form,
   Hidden,
+  SectionContainer,
   AnimatedContainer,
   Label,
-  Input,
+  CustomErrorMessage,
   CompanionButton,
-  StyledTextArea,
-  ErrorMessage,
-  MenuGroup,
-  MenuImage,
-  CheckboxLabel,
-  CheckboxInput,
-  CheckboxSpan,
-  CheckboxText,
   Button,
 } from "./styles/FormStyles";
-import LoadingHeart from "./LoadingHeart";
 
 const hiddenInputsForNetlifyForms = (
   <Hidden>
@@ -41,64 +37,11 @@ const hiddenInputsForNetlifyForms = (
   </Hidden>
 );
 
-const TextInput = ({ label, ...props }) => {
-  const [field, meta] = useField(props);
-  console.log(props.person);
+const Section = props => {
   return (
     <>
-      <Label htmlFor={props.id || props.name}>{label}</Label>
-      <Input {...field} {...props} />
-      {meta.touched && meta.error ? (
-        <ErrorMessage>{meta.error}</ErrorMessage>
-      ) : null}
-    </>
-  );
-};
-
-const TextArea = ({ label, ...props }) => {
-  const [field, meta] = useField(props);
-  return (
-    <>
-      <Label htmlFor={props.id || props.name}>{label}</Label>
-      <StyledTextArea {...field} {...props} />
-      {meta.touched && meta.error ? (
-        <ErrorMessage>{meta.error}</ErrorMessage>
-      ) : null}
-    </>
-  );
-};
-
-const RadioSelection = ({ label, ...props }) => {
-  const [field] = useField(props);
-  return (
-    <>
-      <Label>
-        <Input {...field} {...props} />
-        <MenuImage src={props.image} title={props.value.toLowerCase()} />
-      </Label>
-    </>
-  );
-};
-
-const DateSelection = ({ label }) => {
-  const context = useFormikContext();
-  return (
-    <>
-      <Label htmlFor={label}>{label}</Label>
-      <DatePicker id="dateRange" context={context} />
-    </>
-  );
-};
-
-const Checkbox = ({ children, ...props }) => {
-  const [field] = useField({ ...props, type: "checkbox" });
-  return (
-    <>
-      <CheckboxLabel>
-        <CheckboxInput type="checkbox" {...field} {...props} />
-        <CheckboxSpan />
-        <CheckboxText>{children}</CheckboxText>
-      </CheckboxLabel>
+      <Label htmlFor={props.label}>{props.label}</Label>
+      <SectionContainer>{props.children}</SectionContainer>
     </>
   );
 };
@@ -114,7 +57,7 @@ const rsvpForm = ({ selected, attending, postSubmit }) => {
   const { t } = useTranslation();
 
   const validationSchema = Yup.object().shape({
-    name: Yup.string().required(t("nameRequired")),
+    name: Yup.string().required(" "),
     menu: Yup.string(),
     dietaryRestrictions: Yup.string().max(
       256,
@@ -124,111 +67,6 @@ const rsvpForm = ({ selected, attending, postSubmit }) => {
     songs: Yup.string().max(256, "The night is only so long..."),
     shuttle: Yup.boolean(),
   });
-
-  const submit = values => {
-    const arriving = moment(values.staying.arriving).format("D.M.");
-    const departing = moment(values.staying.departing).format("D.M.");
-    const options = {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: encode({
-        "form-name": "rsvp",
-        attending: attending,
-        ...values,
-        staying: `${arriving}-${departing}${
-          values.shuttle ? " <needs ride>" : ""
-        }`,
-        shuttle: values.shuttle,
-      }),
-    };
-    console.log(options);
-    fetch("/", options)
-      .then(() => {
-        console.log("Form submitted successfully!");
-        postSubmit({
-          attending: attending,
-          shuttle: values.shuttle,
-        });
-      })
-      .catch(error => console.log(error));
-  };
-
-  const nameInput = <></>;
-
-  const dateRangePicker = (
-    <>
-      <DateSelection label={t("staying")} />
-    </>
-  );
-
-  const textArea = (
-    <TextArea
-      label={t("message")}
-      name="message"
-      rows="5"
-      placeholder={t("messagePlaceholder")}
-    />
-  );
-
-  const songs = (
-    <TextInput
-      label={t("songs")}
-      name="songs"
-      type="text"
-      placeholder={t("songsPlaceholder")}
-    />
-  );
-
-  const menuSelection = (
-    <>
-      <Label htmlFor="menu">{t("menu")}</Label>
-      <MenuGroup id="menu">
-        <RadioSelection
-          type="radio"
-          name="menu"
-          value="Chicken"
-          image="chicken.svg"
-        />
-        <RadioSelection type="radio" name="menu" value="Pork" image="pig.svg" />
-        <RadioSelection
-          type="radio"
-          name="menu"
-          value="Vege"
-          image="vege.svg"
-        />
-      </MenuGroup>
-    </>
-  );
-
-  const dietaryRestrictions = (
-    <TextInput
-      label={t("dietaryRestrictions")}
-      name="dietaryRestrictions"
-      type="text"
-      placeholder={t("dietaryRestrictionsPlaceholder")}
-    />
-  );
-
-  const airportShuttle = (
-    <>
-      <Label htmlFor="airportShuttle">{t("airportShuttleLabel")}</Label>
-      <Checkbox id="airportShuttle" name="shuttle">
-        {t("needShuttle")}
-      </Checkbox>
-    </>
-  );
-
-  const attendingFields = (
-    <>
-      {nameInput}
-      {menuSelection}
-      {dietaryRestrictions}
-      {dateRangePicker}
-      {airportShuttle}
-      {songs}
-      {textArea}
-    </>
-  );
 
   return (
     <Formik
@@ -245,7 +83,33 @@ const rsvpForm = ({ selected, attending, postSubmit }) => {
         songs: "",
       }}
       validationSchema={validationSchema}
-      onSubmit={submit}
+      onSubmit={values => {
+        const arriving = moment(values.staying.arriving).format("D.M.");
+        const departing = moment(values.staying.departing).format("D.M.");
+        const options = {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: encode({
+            "form-name": "rsvp",
+            attending: attending,
+            ...values,
+            staying: `${arriving}-${departing}${
+              values.shuttle ? " <needs ride>" : ""
+            }`,
+            shuttle: values.shuttle,
+          }),
+        };
+        console.log(options);
+        fetch("/", options)
+          .then(() => {
+            console.log("Form submitted successfully!");
+            postSubmit({
+              attending: attending,
+              shuttle: values.shuttle,
+            });
+          })
+          .catch(error => console.log(error));
+      }}
     >
       {({
         values,
@@ -261,137 +125,120 @@ const rsvpForm = ({ selected, attending, postSubmit }) => {
             <AnimatedContainer>
               {attending ? (
                 <>
-                  <TextInput
-                    label={t("name")}
-                    name="name"
-                    type="text"
-                    placeholder={t("namePlaceholder")}
-                  />
-                  {additionalPerson ? (
+                  <Section
+                    label={additionalPerson ? t("nameMultiple") : t("name")}
+                  >
                     <TextInput
-                      label={t("companion")}
-                      name="companionName"
+                      name="name"
                       type="text"
                       placeholder={t("namePlaceholder")}
                     />
-                  ) : (
-                    <CompanionButton onClick={() => setAdditionalPerson(true)}>
-                      <span>add companion</span>
-                    </CompanionButton>
-                  )}
-                  <Label htmlFor="menu">
-                    {`${t("menu")}${
-                      additionalPerson && values.name
-                        ? " (" + values.name + ")"
-                        : ""
-                    }`}
-                  </Label>
-                  <MenuGroup id="menu">
+                    <ErrorMessage component={CustomErrorMessage} name="name" />
+                    {additionalPerson ? (
+                      <TextInput
+                        name="companionName"
+                        type="text"
+                        placeholder={t("namePlaceholder")}
+                        autoFocus
+                      />
+                    ) : (
+                      <CompanionButton
+                        onClick={() => setAdditionalPerson(true)}
+                      >
+                        <span>add companion</span>
+                      </CompanionButton>
+                    )}
+                  </Section>
+                  <Section label={t("menu")}>
+                    {additionalPerson && (
+                      <Label htmlFor="menu">{values.name || "..."}</Label>
+                    )}
                     <RadioSelection
-                      type="radio"
-                      name="menu"
-                      value="Chicken"
-                      image="chicken.svg"
+                      id="menu"
+                      options={["Chicken", "Pork", "Vege"]}
                     />
-                    <RadioSelection
-                      type="radio"
-                      name="menu"
-                      value="Pork"
-                      image="pig.svg"
-                    />
-                    <RadioSelection
-                      type="radio"
-                      name="menu"
-                      value="Vege"
-                      image="vege.svg"
-                    />
-                  </MenuGroup>
-                  {additionalPerson && (
-                    <>
-                      <Label htmlFor="companionMenu">
-                        {`${t("menu")}${
-                          additionalPerson && values.companionName
-                            ? " (" + values.companionName + ")"
-                            : ""
-                        }`}
+                    {additionalPerson && (
+                      <>
+                        <Label htmlFor="companionMenu">
+                          {values.companionName || "..."}
+                        </Label>
+                        <RadioSelection
+                          id="companionMenu"
+                          options={["Chicken", "Pork", "Vege"]}
+                        />
+                      </>
+                    )}
+                  </Section>
+                  <Section label={t("dietaryRestrictions")}>
+                    {additionalPerson && (
+                      <Label htmlFor="dietaryRestrictions">
+                        {values.name || "..."}
                       </Label>
-                      <MenuGroup id="companionMenu">
-                        <RadioSelection
-                          type="radio"
-                          name="companionMenu"
-                          value="Chicken"
-                          image="chicken.svg"
-                        />
-                        <RadioSelection
-                          type="radio"
-                          name="companionMenu"
-                          value="Pork"
-                          image="pig.svg"
-                        />
-                        <RadioSelection
-                          type="radio"
-                          name="companionMenu"
-                          value="Vege"
-                          image="vege.svg"
-                        />
-                      </MenuGroup>
-                    </>
-                  )}
-                  <TextInput
-                    label={`${t("dietaryRestrictions")}${
-                      additionalPerson && values.name
-                        ? " (" + values.name + ")"
-                        : ""
-                    }`}
-                    name="dietaryRestrictions"
-                    type="text"
-                    placeholder={t("dietaryRestrictionsPlaceholder")}
-                  />
-                  {additionalPerson && (
+                    )}
                     <TextInput
-                      label={`${t(
-                        "dietaryRestrictions"
-                      )}${values.companionName &&
-                        " (" + values.companionName + ")"}`}
-                      name="companionDietaryRestrictions"
+                      id="dietaryRestrictions"
+                      name="dietaryRestrictions"
                       type="text"
                       placeholder={t("dietaryRestrictionsPlaceholder")}
                     />
-                  )}
-                  <DateSelection label={t("staying")} />
-                  <Label htmlFor="airportShuttle">
-                    {t("airportShuttleLabel")}
-                  </Label>
-                  <Checkbox id="airportShuttle" name="shuttle">
-                    {t("needShuttle")}
-                  </Checkbox>
-                  <TextInput
-                    label={t("songs")}
-                    name="songs"
-                    type="text"
-                    placeholder={t("songsPlaceholder")}
-                  />
-                  <TextArea
-                    label={t("message")}
-                    name="message"
-                    rows="5"
-                    placeholder={t("messagePlaceholder")}
-                  />
+                    {additionalPerson && (
+                      <>
+                        <Label htmlFor="companionDietaryRestrictions">
+                          {values.companionName || "..."}
+                        </Label>
+                        <TextInput
+                          id="companionDietaryRestrictions"
+                          name="companionDietaryRestrictions"
+                          type="text"
+                          placeholder={t("dietaryRestrictionsPlaceholder")}
+                        />
+                      </>
+                    )}
+                  </Section>
+                  <Section label={t("staying")}>
+                    <DatePicker
+                      staying={values.staying}
+                      onSelect={dates => setFieldValue("staying", dates)}
+                    />
+                  </Section>
+                  <Section label={t("airportShuttleLabel")}>
+                    <Checkbox id="airportShuttle" name="shuttle">
+                      {t("needShuttle")}
+                    </Checkbox>
+                  </Section>
+                  <Section label={t("songs")}>
+                    <TextInput
+                      name="songs"
+                      type="text"
+                      placeholder={t("songsPlaceholder")}
+                    />
+                  </Section>
+                  <Section label={t("message")}>
+                    <TextInput
+                      name="message"
+                      type="textarea"
+                      rows="5"
+                      placeholder={t("messagePlaceholder")}
+                    />
+                  </Section>
                 </>
               ) : (
                 <>
-                  <TextInput
-                    label={t("name")}
-                    name="name"
-                    type="text"
-                    placeholder={t("namePlaceholder")}
-                  />
-                  <TextArea
-                    label={t("message")}
-                    name="message"
-                    rows="5"
-                    placeholder={t("messagePlaceholder")}
-                  />
+                  <Section label={t("name")}>
+                    <TextInput
+                      name="name"
+                      type="text"
+                      placeholder={t("namePlaceholder")}
+                    />
+                  </Section>
+                  <Section label={t("message")}>
+                    <TextInput
+                      name="message"
+                      type="textarea"
+                      rows="5"
+                      placeholder={t("messagePlaceholder")}
+                    />
+                  </Section>
                 </>
               )}
               <Button type="submit" attending={attending}>
