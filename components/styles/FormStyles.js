@@ -4,27 +4,6 @@ export const Form = styled.form`
   width: 100%;
   display: flex;
   flex-direction: column;
-
-  [type="radio"] {
-    position: absolute;
-    opacity: 0;
-    width: 0;
-    height: 0;
-    margin: 0;
-    padding: 0;
-  }
-
-  [type="radio"] + div {
-    cursor: pointer;
-    border: 0.2rem solid ${props => props.theme.lightgrey};
-    border-radius: 0.2rem;
-    text-align: center;
-  }
-
-  [type="radio"]:checked + div,
-  [type="radio"]:focus + div {
-    border: 0.2rem solid ${props => props.theme.black};
-  }
 `;
 
 export const Hidden = styled.div`
@@ -40,8 +19,11 @@ export const Label = styled.label`
 export const SectionContainer = styled.div`
   position: relative;
   margin: 0 0 2rem 2rem;
-  & > input:nth-of-type(2) {
+  & > label:nth-of-type(2) {
     margin-top: 1rem;
+  }
+  @media (min-width: 700px) {
+    margin: 0 0 3rem 3rem;
   }
 `;
 
@@ -63,25 +45,48 @@ export const AnimatedContainer = styled.div`
 `;
 
 export const CompanionButton = styled.button`
+  position: relative;
   display: block;
   background: none;
-  height: 3rem;
-  width: 50%;
+  height: 4rem;
+  width: 30%;
   border: 0.2rem solid ${props => props.theme.lightgrey};
   border-radius: 0.2rem;
-  margin: 0 auto 2rem auto;
+  margin: 1rem 0 0 2rem;
   font-size: 2rem;
-  transform: skew(-20deg);
+  color: ${props => props.theme.placeholder};
   cursor: pointer;
   &:hover,
   &:focus {
     border: 0.2rem solid ${props => props.theme.black};
   }
-  & > span {
-    display: inline-block;
-    transform: skew(20deg);
-    height: 100%;
-    line-height: 3rem;
+`;
+
+export const RemoveCompanion = styled.span`
+  height: 6rem;
+  width: 6rem;
+  position: absolute;
+  bottom: -0.75rem;
+  right: 1rem;
+  opacity: 0.5;
+  &:before,
+  &:after {
+    position: absolute;
+    left: 28px;
+    top: 12px;
+    content: " ";
+    height: 33px;
+    width: 2px;
+    background-color: ${props => props.theme.black};
+  }
+  &:before {
+    transform: rotate(45deg);
+  }
+  &:after {
+    transform: rotate(-45deg);
+  }
+  &:hover {
+    opacity: 1;
   }
 `;
 

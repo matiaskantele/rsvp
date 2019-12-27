@@ -17,6 +17,7 @@ import {
   Label,
   CustomErrorMessage,
   CompanionButton,
+  RemoveCompanion,
   Button,
 } from "./styles/FormStyles";
 
@@ -135,17 +136,23 @@ const rsvpForm = ({ selected, attending, postSubmit }) => {
                     />
                     <ErrorMessage component={CustomErrorMessage} name="name" />
                     {additionalPerson ? (
-                      <TextInput
-                        name="companionName"
-                        type="text"
-                        placeholder={t("namePlaceholder")}
-                        autoFocus
-                      />
+                      <>
+                        <TextInput
+                          name="companionName"
+                          type="text"
+                          placeholder={t("namePlaceholder")}
+                          noLabel
+                          autoFocus
+                        />
+                        <RemoveCompanion
+                          onClick={() => setAdditionalPerson(false)}
+                        />
+                      </>
                     ) : (
                       <CompanionButton
                         onClick={() => setAdditionalPerson(true)}
                       >
-                        <span>add companion</span>
+                        {t("plusOne")}
                       </CompanionButton>
                     )}
                   </Section>
