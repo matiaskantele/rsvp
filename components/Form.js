@@ -25,12 +25,15 @@ import {
 const hiddenInputsForNetlifyForms = (
   <Hidden>
     {[
-      "name",
       "attending",
+      "name#1",
+      "menu#1",
+      "allergies#1",
+      "name#2",
+      "menu#2",
+      "allergies#2",
       "staying",
       "shuttle",
-      "menu",
-      "dietaryRestrictions",
       "songs",
       "message",
     ].map(i => (
@@ -60,29 +63,31 @@ const rsvpForm = ({ selected, attending, postSubmit }) => {
 
   const validationSchema = Yup.object().shape({
     name: Yup.string().required(" "),
-    menu: Yup.string(),
     dietaryRestrictions: Yup.string().max(
       256,
       "I feel you, but the limit here is 256 characters..."
     ),
-    message: Yup.string().max(256, "Message too long."),
+    companionDietaryRestrictions: Yup.string().max(
+      256,
+      "I feel you, but the limit here is 256 characters..."
+    ),
     songs: Yup.string().max(256, "The night is only so long..."),
-    shuttle: Yup.boolean(),
+    message: Yup.string().max(256, "Message too long."),
   });
 
   return (
     <Formik
       initialValues={{
         name: "",
-        companionName: "",
-        staying: { arriving: null, departing: null },
-        shuttle: false,
         menu: "",
-        companionMenu: "",
         dietaryRestrictions: "",
+        companionName: "",
+        companionMenu: "",
         companionDietaryRestrictions: "",
-        message: "",
+        staying: { arriving: null, departing: null },
+        shuttle: "",
         songs: "",
+        message: "",
       }}
       validationSchema={validationSchema}
       onSubmit={values => {
@@ -95,11 +100,18 @@ const rsvpForm = ({ selected, attending, postSubmit }) => {
         const data = {
           "form-name": "rsvp",
           attending: attending,
-          ...values,
+          "name#1": values.name,
+          "menu#1": values.menu,
+          "allergies#1": values.dietaryRestrictions,
+          "name#2": values.companionName,
+          "menu#2": values.companionMenu,
+          "allergies#2": values.companionDietaryRestrictions,
           staying: `${arriving}-${departing}${
-            values.shuttle ? " <needs ride>" : ""
+            values.shuttle ? " <needs shuttle>" : ""
           }`,
           shuttle: values.shuttle ? "yes" : "",
+          songs: values.songs,
+          message: values.message,
         };
         const options = {
           method: "POST",
@@ -118,14 +130,7 @@ const rsvpForm = ({ selected, attending, postSubmit }) => {
           .catch(error => console.log(error));
       }}
     >
-      {({
-        values,
-        dirty,
-        isValid,
-        setFieldValue,
-        isSubmitting,
-        handleSubmit,
-      }) => (
+      {({ values, setFieldValue, isSubmitting, handleSubmit }) => (
         <Form name="rsvp" data-netlify="true" onSubmit={handleSubmit}>
           {hiddenInputsForNetlifyForms}
           {selected && (
