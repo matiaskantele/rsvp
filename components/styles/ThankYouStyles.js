@@ -24,7 +24,7 @@ export const ThankYouContainer = styled.div`
   text-align: center;
   &:after {
     content: "";
-    background: url("./appreciation.svg") no-repeat center 20%;
+    background: url("./appreciation.svg") no-repeat center 30%;
     background-size: 90%;
     opacity: 0.5;
     top: 0;
