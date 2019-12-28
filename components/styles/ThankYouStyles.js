@@ -24,9 +24,7 @@ export const ThankYouContainer = styled.div`
   text-align: center;
   & > h1 {
     font-size: 4rem;
-    margin-bottom: 3rem;
     text-shadow: 2px 2px 5px white;
-    margin-bottom: 2rem;
     &:last-of-type {
       margin-bottom: 8rem;
     }
