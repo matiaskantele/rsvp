@@ -26,12 +26,12 @@ const hiddenInputsForNetlifyForms = (
   <Hidden>
     {[
       "attending",
-      "name#1",
-      "menu#1",
-      "allergies#1",
-      "name#2",
-      "menu#2",
-      "allergies#2",
+      "name",
+      "menu",
+      "dietaryRestrictions",
+      "companionName",
+      "companionMenu",
+      "companionDietaryRestrictions",
       "staying",
       "shuttle",
       "songs",
@@ -100,18 +100,11 @@ const rsvpForm = ({ selected, attending, postSubmit }) => {
         const data = {
           "form-name": "rsvp",
           attending: attending,
-          "name#1": values.name,
-          "menu#1": values.menu,
-          "allergies#1": values.dietaryRestrictions,
-          "name#2": values.companionName,
-          "menu#2": values.companionMenu,
-          "allergies#2": values.companionDietaryRestrictions,
+          ...values,
           staying: `${arriving}-${departing}${
             values.shuttle ? " <needs shuttle>" : ""
           }`,
           shuttle: values.shuttle ? "yes" : "",
-          songs: values.songs,
-          message: values.message,
         };
         const options = {
           method: "POST",
