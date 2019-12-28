@@ -21,6 +21,7 @@ export const ThankYouContainer = styled.div`
   text-shadow: 1px 1px 4px white;
   padding-top: 10rem;
   animation: ${puffIn} 0.7s linear ease-in-out both;
+  text-align: center;
   & > h1 {
     font-size: 4rem;
     margin-bottom: 3rem;
@@ -34,7 +35,6 @@ export const ThankYouContainer = styled.div`
     font-size: 1.7rem;
     font-family: "Montserrat";
     max-width: 60%;
-    text-align: center;
   }
   @media (min-width: 700px) {
     & > h1 {
