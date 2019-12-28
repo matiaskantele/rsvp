@@ -37,7 +37,7 @@ const hiddenInputsForNetlifyForms = (
       "songs",
       "message",
     ].map(i => (
-      <input name={i} key={i} />
+      <input type="text" name={i} key={i} />
     ))}
   </Hidden>
 );
