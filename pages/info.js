@@ -31,6 +31,7 @@ const Info = () => {
         <p>{t("resortPhone")}</p>
         <p>{t("firstNight")}</p>
         <p>{t("extraNights")}</p>
+        <Map />
       </Section>
       <Section title={t("arrival")} image="arrival.svg">
         <h2>{t("byAir")}</h2>
@@ -55,9 +56,6 @@ const Info = () => {
         <h2>{t("onlyYou")}</h2>
         <p>{t("notNecessary")}</p>
         <p>{t("ifRich")}</p>
-      </Section>
-      <Section title={t("map")} image="map.svg">
-        <Map />
       </Section>
     </>
   );

@@ -43,8 +43,8 @@ const puffIn = keyframes`
 export const AnimatedContainer = styled.div`
   animation: ${puffIn} 0.7s linear ease-in-out both;
   & > label {
-    font-size: 2.25rem;
-    font-weight: 500;
+    font-size: 2rem;
+    font-weight: bold;
   }
 `;
 
