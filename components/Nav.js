@@ -10,7 +10,7 @@ const Nav = () => {
     <NavStyles>
       <LanguageSelect />
       <Link href="/">
-        <a>{t("invite")}</a>
+        <a>{t("home")}</a>
       </Link>
       <Link href="/info">
         <a>{t("info")}</a>

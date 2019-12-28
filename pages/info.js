@@ -20,6 +20,9 @@ const Info = () => {
     <>
       <Section title={t("date")} image="date.svg">
         <h2>{t("saturday")}</h2>
+        <p>
+          {t("rsvpBy")} <strong>{t("byDate")}</strong>.
+        </p>
       </Section>
       <Section title={t("location")} image="location.svg">
         <h2>{t("resortName")}</h2>
@@ -29,22 +32,38 @@ const Info = () => {
           {t("area")}
         </p>
         <p>{t("resortPhone")}</p>
+        <p>
+          <a
+            href="https://www.topolaskies.com/en/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {t("resortWebsite")}
+          </a>
+        </p>
         <p>{t("firstNight")}</p>
-        <p>{t("extraNights")}</p>
+        <p>
+          {t("extraNights")}
+          <strong>{t("pleaseMark")}</strong>
+          {t("extraNightsContinue")}
+        </p>
         <Map />
       </Section>
       <Section title={t("arrival")} image="arrival.svg">
         <h2>{t("byAir")}</h2>
         <p>{t("flightRecommendation")}</p>
-        <p>{t("carRentalCheap")}</p>
-        <p>{t("transportationHelp")}</p>
+        <p>
+          {t("fromVarna")}
+          <strong>{t("pleaseMark")}</strong>.
+        </p>
         <h2>{t("byCar")}</h2>
         <p>{t("freeParking")}</p>
       </Section>
       <Section title={t("schedule")} image="schedule.svg">
         <h2>{t("welcomeDrinks")}</h2>
-        <p>{t("ceremonyLocation")}</p>
+        <p>{t("welcomeDrinksLocation")}</p>
         <h2>{t("weddingCeremony")}</h2>
+        <p>{t("weddingCeremonyLocation")}</p>
         <h2>{t("reception")}</h2>
         <p>{t("receptionLocation")}</p>
       </Section>
@@ -55,7 +74,11 @@ const Info = () => {
       <Section title={t("gifts")} image="gifts.svg">
         <h2>{t("onlyYou")}</h2>
         <p>{t("notNecessary")}</p>
-        <p>{t("ifRich")}</p>
+        <p>
+          {t("ifRich")}
+          <br />
+          {t("bankAccount")}
+        </p>
       </Section>
     </>
   );

@@ -1,5 +1,19 @@
 import styled from "styled-components";
 
+export const RsvpContainer = styled.div`
+  margin-top: 2rem;
+  & > h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 3.5rem;
+  }
+  @media (min-width: 700px) {
+    & > h1 {
+      font-size: 4.5rem;
+    }
+  }
+`;
+
 export const Attendance = styled.div`
   width: 100%;
   display: flex;
@@ -10,9 +24,9 @@ export const Attendance = styled.div`
     position: relative;
     height: 5rem;
     transition: all 0.25s ease-in-out;
-    font-size: 1.5rem;
+    font-family: "Marck Script", cursive;
+    font-size: 2.5rem;
     font-weight: 900;
-    text-transform: uppercase;
     border-top: 1px solid ${props => props.theme.lightgrey};
     border-bottom: 1px solid ${props => props.theme.lightgrey};
     cursor: pointer;
@@ -26,8 +40,11 @@ export const Attendance = styled.div`
       display: inline-block;
       transform: skew(20deg);
     }
+    @media (min-width: 700px) {
+      font-size: 3rem;
+    }
     @media (min-width: 1300px) {
-      font-size: 2rem;
+      font-size: 3.5rem;
     }
   }
 `;

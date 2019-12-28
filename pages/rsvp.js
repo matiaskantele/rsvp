@@ -5,6 +5,7 @@ import styled from "styled-components";
 import Form from "../components/Form";
 import ThankYou from "../components/ThankYou";
 import {
+  RsvpContainer,
   Attendance,
   AttendButton,
   DeclineButton,
@@ -43,7 +44,8 @@ const Rsvp = () => {
       </Hidden>
 
       {sent === null ? (
-        <>
+        <RsvpContainer>
+          <h1>{t("attendingQuestion")}</h1>
           <Attendance>
             <AttendButton
               selected={selected}
@@ -73,7 +75,7 @@ const Rsvp = () => {
               postSubmit={setSent}
             />
           ) : null}
-        </>
+        </RsvpContainer>
       ) : (
         <ThankYou sent={sent} />
       )}

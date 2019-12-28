@@ -53,10 +53,10 @@ export const CompanionButton = styled.button`
   display: block;
   background: none;
   height: 4rem;
-  width: 30%;
+  width: 50%;
   border: 0.2rem solid ${props => props.theme.black};
   border-radius: 0.2rem;
-  margin: 1rem 0 0 2rem;
+  margin-top: 1rem;
   font-size: 2rem;
   color: ${props => props.theme.black};
   cursor: pointer;
@@ -64,17 +64,14 @@ export const CompanionButton = styled.button`
   &:focus {
     border: 0.2rem solid ${props => props.theme.black};
   }
-  @media (min-width: 700px) {
-    margin: 1rem 0 0 3rem;
-  }
 `;
 
 export const RemoveCompanion = styled.button`
   height: 6rem;
   width: 6rem;
   position: absolute;
-  bottom: -0.75rem;
-  right: -0.75rem;
+  bottom: -0.5rem;
+  right: -0.5rem;
   opacity: 0.5;
   background: none;
   border: none;
