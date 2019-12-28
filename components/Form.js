@@ -11,7 +11,6 @@ import Checkbox from "./Checkbox";
 import LoadingHeart from "./LoadingHeart";
 import {
   Form,
-  Hidden,
   Hideable,
   SectionContainer,
   AnimatedContainer,
@@ -105,7 +104,6 @@ const rsvpForm = ({ selected, attending, postSubmit }) => {
     >
       {({ values, setFieldValue, isSubmitting, handleSubmit }) => (
         <Form name="rsvp" data-netlify="true" onSubmit={handleSubmit}>
-          {hiddenInputsForNetlifyForms}
           {selected && (
             <AnimatedContainer>
               {attending ? (
