@@ -80,9 +80,7 @@ const rsvpForm = ({ selected, attending, postSubmit }) => {
           "form-name": "rsvp",
           attending: attending,
           ...values,
-          staying: `${arriving}-${departing}${
-            values.shuttle ? " <needs shuttle>" : ""
-          }`,
+          staying: `${arriving}-${departing}`,
           shuttle: values.shuttle ? "yes" : "",
         };
         console.log(data);
