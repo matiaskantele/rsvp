@@ -24,6 +24,7 @@ const Rsvp = () => {
     <>
       {/* A little help for Netlify bots */}
       <Hidden name="rsvp" netlify>
+        <input type="text" name="form-name" value="rsvp" />
         {[
           "attending",
           "name",
