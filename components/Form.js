@@ -104,6 +104,7 @@ const rsvpForm = ({ selected, attending, postSubmit }) => {
     >
       {({ values, setFieldValue, isSubmitting, handleSubmit }) => (
         <Form name="rsvp" data-netlify="true" onSubmit={handleSubmit}>
+          <input type="hidden" name="form-name" value="rsvp" />
           {selected && (
             <AnimatedContainer>
               {attending ? (
