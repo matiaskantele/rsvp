@@ -15,7 +15,11 @@ import {
   SectionContainer,
   AnimatedContainer,
   Label,
-  CustomErrorMessage,
+  InputErrorMessage,
+  CompanionInputErrorMessage,
+  MenuErrorMessage,
+  MenuErrorMessageWithCompanion,
+  CompanionMenuErrorMessage,
   CompanionButton,
   RemoveCompanion,
   Button,
@@ -42,6 +46,19 @@ const rsvpForm = ({ selected, attending, postSubmit }) => {
 
   const validationSchema = Yup.object().shape({
     name: Yup.string().required(" "),
+    companionName:
+      attending && additionalPerson ? Yup.string().required(" ") : Yup.string(),
+    menu: attending
+      ? Yup.mixed()
+          .oneOf(["Chicken", "Pork", "Vege"])
+          .required(" ")
+      : Yup.mixed().oneOf(["Chicken", "Pork", "Vege"]),
+    companionMenu:
+      attending && additionalPerson
+        ? Yup.mixed()
+            .oneOf(["Chicken", "Pork", "Vege"])
+            .required(" ")
+        : Yup.mixed().oneOf(["Chicken", "Pork", "Vege"]),
     dietaryRestrictions: Yup.string().max(
       256,
       "I feel you, but the limit here is 256 characters..."
@@ -50,6 +67,16 @@ const rsvpForm = ({ selected, attending, postSubmit }) => {
       256,
       "I feel you, but the limit here is 256 characters..."
     ),
+    staying: attending
+      ? Yup.object().shape({
+          arriving: Yup.mixed().notOneOf([null], " "),
+          departing: Yup.mixed().notOneOf([null], " "),
+        })
+      : Yup.object().shape({
+          arriving: Yup.mixed().oneOf([null], " "),
+          departing: Yup.mixed().oneOf([null], " "),
+        }),
+    shuttle: Yup.mixed().oneOf([true, false]),
     songs: Yup.string().max(256, "The night is only so long..."),
     message: Yup.string().max(256, "Message too long."),
   });
@@ -114,7 +141,7 @@ const rsvpForm = ({ selected, attending, postSubmit }) => {
                       type="text"
                       placeholder={t("namePlaceholder")}
                     />
-                    <ErrorMessage component={CustomErrorMessage} name="name" />
+                    <ErrorMessage component={InputErrorMessage} name="name" />
                     <Hideable visible={additionalPerson}>
                       <TextInput
                         name="companionName"
@@ -122,6 +149,10 @@ const rsvpForm = ({ selected, attending, postSubmit }) => {
                         placeholder={t("namePlaceholder")}
                         noLabel
                         autoFocus
+                      />
+                      <ErrorMessage
+                        component={CompanionInputErrorMessage}
+                        name="companionName"
                       />
                       <RemoveCompanion
                         type="button"
@@ -146,6 +177,14 @@ const rsvpForm = ({ selected, attending, postSubmit }) => {
                       type="radio"
                       options={["Chicken", "Pork", "Vege"]}
                     />
+                    <ErrorMessage
+                      component={
+                        additionalPerson
+                          ? MenuErrorMessageWithCompanion
+                          : MenuErrorMessage
+                      }
+                      name="menu"
+                    />
                     <Hideable visible={additionalPerson}>
                       <Label htmlFor="companionMenu">
                         {values.companionName || "..."}
@@ -154,6 +193,10 @@ const rsvpForm = ({ selected, attending, postSubmit }) => {
                         name="companionMenu"
                         type="radio"
                         options={["Chicken", "Pork", "Vege"]}
+                      />
+                      <ErrorMessage
+                        component={CompanionMenuErrorMessage}
+                        name="companionMenu"
                       />
                     </Hideable>
                   </Section>
@@ -186,6 +229,14 @@ const rsvpForm = ({ selected, attending, postSubmit }) => {
                       staying={values.staying}
                       onSelect={dates => setFieldValue("staying", dates)}
                     />
+                    <ErrorMessage
+                      component={InputErrorMessage}
+                      name="staying.arriving"
+                    />
+                    <ErrorMessage
+                      component={InputErrorMessage}
+                      name="staying.departing"
+                    />
                   </Section>
                   <Section label={t("airportShuttleLabel")}>
                     <Checkbox id="airportShuttle" name="shuttle">
@@ -216,7 +267,7 @@ const rsvpForm = ({ selected, attending, postSubmit }) => {
                       type="text"
                       placeholder={t("namePlaceholder")}
                     />
-                    <ErrorMessage component={CustomErrorMessage} name="name" />
+                    <ErrorMessage component={InputErrorMessage} name="name" />
                   </Section>
                   <Section label={t("message")}>
                     <TextInput

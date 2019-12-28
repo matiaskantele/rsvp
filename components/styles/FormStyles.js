@@ -98,7 +98,7 @@ export const RemoveCompanion = styled.button`
   }
 `;
 
-export const CustomErrorMessage = styled.span`
+export const InputErrorMessage = styled.span`
   position: absolute;
   top: 0;
   left: 0;
@@ -111,6 +111,86 @@ export const CustomErrorMessage = styled.span`
   border: 0.2rem solid transparent;
   border-radius: 0.2rem;
   box-shadow: 0 0 0 0.3rem red;
+`;
+
+export const CompanionInputErrorMessage = styled.span`
+  position: absolute;
+  top: 6rem;
+  left: 0;
+  width: 100%;
+  height: 4.5rem;
+  pointer-events: none;
+  color: red;
+  font-size: 1.8rem;
+  font-weight: 500;
+  border: 0.2rem solid transparent;
+  border-radius: 0.2rem;
+  box-shadow: 0 0 0 0.3rem red;
+`;
+
+export const MenuErrorMessage = styled.span`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 6rem;
+  pointer-events: none;
+  color: red;
+  font-size: 1.8rem;
+  font-weight: 500;
+  border: 0.2rem solid transparent;
+  border-radius: 0.2rem;
+  box-shadow: 0 0 0 0.3rem red;
+  @media (min-width: 700px) {
+    height: 6.5rem;
+  }
+  @media (min-width: 1300px) {
+    height: 7rem;
+  }
+`;
+
+export const MenuErrorMessageWithCompanion = styled.span`
+  position: absolute;
+  top: 3rem;
+  left: 0;
+  width: 100%;
+  height: 6rem;
+  pointer-events: none;
+  color: red;
+  font-size: 1.8rem;
+  font-weight: 500;
+  border: 0.2rem solid transparent;
+  border-radius: 0.2rem;
+  box-shadow: 0 0 0 0.3rem red;
+  @media (min-width: 700px) {
+    height: 6.5rem;
+  }
+  @media (min-width: 1300px) {
+    height: 7rem;
+  }
+`;
+
+export const CompanionMenuErrorMessage = styled.span`
+  position: absolute;
+  top: 13rem;
+  left: 0;
+  width: 100%;
+  height: 6rem;
+  pointer-events: none;
+  color: red;
+  font-size: 1.8rem;
+  font-weight: 500;
+  border: 0.2rem solid transparent;
+  border-radius: 0.2rem;
+  box-shadow: 0 0 0 0.3rem red;
+  @media (min-width: 700px) {
+    top: 13.5rem;
+    height: 6.5rem;
+  }
+  @media (min-width: 1300px) {
+    top: 14rem;
+    height: 7rem;
+  }
 `;
 
 export const Button = styled.button`
