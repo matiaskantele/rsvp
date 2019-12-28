@@ -22,26 +22,6 @@ import {
   Button,
 } from "./styles/FormStyles";
 
-const hiddenInputsForNetlifyForms = (
-  <Hidden>
-    {[
-      "attending",
-      "name",
-      "menu",
-      "dietaryRestrictions",
-      "companionName",
-      "companionMenu",
-      "companionDietaryRestrictions",
-      "staying",
-      "shuttle",
-      "songs",
-      "message",
-    ].map(i => (
-      <input type="text" name={i} key={i} />
-    ))}
-  </Hidden>
-);
-
 const Section = props => {
   return (
     <>
@@ -61,19 +41,19 @@ const rsvpForm = ({ selected, attending, postSubmit }) => {
   const [additionalPerson, setAdditionalPerson] = useState(false);
   const { t } = useTranslation();
 
-  // const validationSchema = Yup.object().shape({
-  //   name: Yup.string().required(" "),
-  //   dietaryRestrictions: Yup.string().max(
-  //     256,
-  //     "I feel you, but the limit here is 256 characters..."
-  //   ),
-  //   companionDietaryRestrictions: Yup.string().max(
-  //     256,
-  //     "I feel you, but the limit here is 256 characters..."
-  //   ),
-  //   songs: Yup.string().max(256, "The night is only so long..."),
-  //   message: Yup.string().max(256, "Message too long."),
-  // });
+  const validationSchema = Yup.object().shape({
+    name: Yup.string().required(" "),
+    dietaryRestrictions: Yup.string().max(
+      256,
+      "I feel you, but the limit here is 256 characters..."
+    ),
+    companionDietaryRestrictions: Yup.string().max(
+      256,
+      "I feel you, but the limit here is 256 characters..."
+    ),
+    songs: Yup.string().max(256, "The night is only so long..."),
+    message: Yup.string().max(256, "Message too long."),
+  });
 
   return (
     <Formik
@@ -89,7 +69,7 @@ const rsvpForm = ({ selected, attending, postSubmit }) => {
         songs: "",
         message: "",
       }}
-      // validationSchema={validationSchema}
+      validationSchema={validationSchema}
       onSubmit={values => {
         const arriving = values.staying.arriving
           ? moment(values.staying.arriving).format("D.M.")

@@ -6,10 +6,6 @@ export const Form = styled.form`
   flex-direction: column;
 `;
 
-export const Hidden = styled.div`
-  display: none;
-`;
-
 export const Hideable = styled.div`
   display: ${props => (props.visible ? "block" : "none")};
   & > label {

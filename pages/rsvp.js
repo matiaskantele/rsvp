@@ -1,13 +1,18 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import styled from "styled-components";
 
+import Form from "../components/Form";
+import ThankYou from "../components/ThankYou";
 import {
   Attendance,
   AttendButton,
   DeclineButton,
 } from "../components/styles/AttendanceStyles";
-import Form from "../components/Form";
-import ThankYou from "../components/ThankYou";
+
+const Hidden = styled.form`
+  display: none;
+`;
 
 const Rsvp = () => {
   const { t } = useTranslation();
@@ -17,6 +22,25 @@ const Rsvp = () => {
 
   return (
     <>
+      {/* A little help for Netlify bots */}
+      <Hidden name="rsvp" netlify>
+        {[
+          "attending",
+          "name",
+          "menu",
+          "dietaryRestrictions",
+          "companionName",
+          "companionMenu",
+          "companionDietaryRestrictions",
+          "staying",
+          "shuttle",
+          "songs",
+          "message",
+        ].map(i => (
+          <input type="text" name={i} key={i} />
+        ))}
+      </Hidden>
+
       {sent === null ? (
         <>
           <Attendance>
