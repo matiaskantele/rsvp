@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const LanguageSelectContainer = styled.div`
-  margin: 0 3rem 0 1.4rem;
+  margin: 0 1rem;
   padding: 0;
   position: relative;
   display: flex;
@@ -16,25 +16,25 @@ export const LanguageSelectContainer = styled.div`
 `;
 
 export const LanguageButton = styled.button`
-  height: 2rem;
-  width: 3rem;
+  height: 100%;
+  width: 4rem;
   background-image: ${props => `url(${props.image})`};
   background-position: center;
   background-size: cover;
-  border: 2px solid ${props => props.theme.lightgrey};
   cursor: pointer;
-  filter: opacity(80%);
+  opacity: 80%;
   transform: skew(-20deg);
   &:hover,
   &:focus {
-    border: 2px solid ${props => props.theme.black};
+    opacity: 100%;
   }
   @media (min-width: 700px) {
-    height: 2.5rem;
-    width: 3.5rem;
+    height: 3rem;
+    width: 4.5rem;
+    border: 2px solid ${props => props.theme.lightgrey};
   }
   @media (min-width: 1300px) {
-    height: 3rem;
-    width: 4rem;
+    height: 3.5rem;
+    width: 5.25rem;
   }
 `;

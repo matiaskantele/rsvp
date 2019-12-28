@@ -38,15 +38,11 @@ export const ThankYouContainer = styled.div`
   }
   @media (min-width: 700px) {
     & > h1 {
-      font-size: 8rem;
+      font-size: 5rem;
       margin-bottom: 2.5rem;
       &:last-of-type {
         margin-bottom: 10rem;
       }
-    }
-    & > h2 {
-      font-size: 4rem;
-      margin-bottom: 8rem;
     }
     & > p {
       font-weight: 500;
@@ -56,14 +52,11 @@ export const ThankYouContainer = styled.div`
   @media (min-width: 1300px) {
     padding-top: 15rem;
     & > h1 {
-      font-size: 9rem;
+      font-size: 6rem;
       margin-bottom: 2.5rem;
       &:last-of-type {
         margin-bottom: 12rem;
       }
-    }
-    & > h2 {
-      font-size: 5rem;
     }
     & > p {
       font-size: 2.5rem;

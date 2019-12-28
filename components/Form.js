@@ -12,6 +12,7 @@ import LoadingHeart from "./LoadingHeart";
 import {
   Form,
   Hidden,
+  Hideable,
   SectionContainer,
   AnimatedContainer,
   Label,
@@ -85,20 +86,25 @@ const rsvpForm = ({ selected, attending, postSubmit }) => {
       }}
       validationSchema={validationSchema}
       onSubmit={values => {
-        const arriving = moment(values.staying.arriving).format("D.M.");
-        const departing = moment(values.staying.departing).format("D.M.");
+        const arriving = values.staying.arriving
+          ? moment(values.staying.arriving).format("D.M.")
+          : "";
+        const departing = values.staying.departing
+          ? moment(values.staying.departing).format("D.M.")
+          : "";
+        const data = {
+          "form-name": "rsvp",
+          attending: attending,
+          ...values,
+          staying: `${arriving}-${departing}${
+            values.shuttle ? " <needs ride>" : ""
+          }`,
+          shuttle: values.shuttle ? "yes" : "",
+        };
         const options = {
           method: "POST",
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          body: encode({
-            "form-name": "rsvp",
-            attending: attending,
-            ...values,
-            staying: `${arriving}-${departing}${
-              values.shuttle ? " <needs ride>" : ""
-            }`,
-            shuttle: values.shuttle,
-          }),
+          body: encode(data),
         };
         console.log(options);
         fetch("/", options)
@@ -135,46 +141,47 @@ const rsvpForm = ({ selected, attending, postSubmit }) => {
                       placeholder={t("namePlaceholder")}
                     />
                     <ErrorMessage component={CustomErrorMessage} name="name" />
-                    {additionalPerson ? (
-                      <>
-                        <TextInput
-                          name="companionName"
-                          type="text"
-                          placeholder={t("namePlaceholder")}
-                          noLabel
-                          autoFocus
-                        />
-                        <RemoveCompanion
-                          onClick={() => setAdditionalPerson(false)}
-                        />
-                      </>
-                    ) : (
+                    <Hideable visible={additionalPerson}>
+                      <TextInput
+                        name="companionName"
+                        type="text"
+                        placeholder={t("namePlaceholder")}
+                        noLabel
+                        autoFocus
+                      />
+                      <RemoveCompanion
+                        type="button"
+                        onClick={() => setAdditionalPerson(false)}
+                      />
+                    </Hideable>
+                    <Hideable visible={!additionalPerson}>
                       <CompanionButton
+                        type="button"
                         onClick={() => setAdditionalPerson(true)}
                       >
                         {t("plusOne")}
                       </CompanionButton>
-                    )}
+                    </Hideable>
                   </Section>
                   <Section label={t("menu")}>
                     {additionalPerson && (
                       <Label htmlFor="menu">{values.name || "..."}</Label>
                     )}
                     <RadioSelection
-                      id="menu"
+                      name="menu"
+                      type="radio"
                       options={["Chicken", "Pork", "Vege"]}
                     />
-                    {additionalPerson && (
-                      <>
-                        <Label htmlFor="companionMenu">
-                          {values.companionName || "..."}
-                        </Label>
-                        <RadioSelection
-                          id="companionMenu"
-                          options={["Chicken", "Pork", "Vege"]}
-                        />
-                      </>
-                    )}
+                    <Hideable visible={additionalPerson}>
+                      <Label htmlFor="companionMenu">
+                        {values.companionName || "..."}
+                      </Label>
+                      <RadioSelection
+                        name="companionMenu"
+                        type="radio"
+                        options={["Chicken", "Pork", "Vege"]}
+                      />
+                    </Hideable>
                   </Section>
                   <Section label={t("dietaryRestrictions")}>
                     {additionalPerson && (
@@ -188,19 +195,17 @@ const rsvpForm = ({ selected, attending, postSubmit }) => {
                       type="text"
                       placeholder={t("dietaryRestrictionsPlaceholder")}
                     />
-                    {additionalPerson && (
-                      <>
-                        <Label htmlFor="companionDietaryRestrictions">
-                          {values.companionName || "..."}
-                        </Label>
-                        <TextInput
-                          id="companionDietaryRestrictions"
-                          name="companionDietaryRestrictions"
-                          type="text"
-                          placeholder={t("dietaryRestrictionsPlaceholder")}
-                        />
-                      </>
-                    )}
+                    <Hideable visible={additionalPerson}>
+                      <Label htmlFor="companionDietaryRestrictions">
+                        {values.companionName || "..."}
+                      </Label>
+                      <TextInput
+                        id="companionDietaryRestrictions"
+                        name="companionDietaryRestrictions"
+                        type="text"
+                        placeholder={t("dietaryRestrictionsPlaceholder")}
+                      />
+                    </Hideable>
                   </Section>
                   <Section label={t("staying")}>
                     <DatePicker
@@ -237,6 +242,7 @@ const rsvpForm = ({ selected, attending, postSubmit }) => {
                       type="text"
                       placeholder={t("namePlaceholder")}
                     />
+                    <ErrorMessage component={CustomErrorMessage} name="name" />
                   </Section>
                   <Section label={t("message")}>
                     <TextInput

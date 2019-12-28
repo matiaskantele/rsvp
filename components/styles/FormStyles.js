@@ -10,6 +10,13 @@ export const Hidden = styled.div`
   display: none;
 `;
 
+export const Hideable = styled.div`
+  display: ${props => (props.visible ? "block" : "none")};
+  & > label {
+    margin-top: 1rem;
+  }
+`;
+
 export const Label = styled.label`
   display: block;
   margin-bottom: 1rem;
@@ -19,9 +26,6 @@ export const Label = styled.label`
 export const SectionContainer = styled.div`
   position: relative;
   margin: 0 0 2rem 2rem;
-  & > label:nth-of-type(2) {
-    margin-top: 1rem;
-  }
   @media (min-width: 700px) {
     margin: 0 0 3rem 3rem;
   }
@@ -42,6 +46,10 @@ const puffIn = keyframes`
 
 export const AnimatedContainer = styled.div`
   animation: ${puffIn} 0.7s linear ease-in-out both;
+  & > label {
+    font-size: 2.25rem;
+    font-weight: 500;
+  }
 `;
 
 export const CompanionButton = styled.button`
@@ -50,34 +58,41 @@ export const CompanionButton = styled.button`
   background: none;
   height: 4rem;
   width: 30%;
-  border: 0.2rem solid ${props => props.theme.lightgrey};
+  border: 0.2rem solid ${props => props.theme.black};
   border-radius: 0.2rem;
   margin: 1rem 0 0 2rem;
   font-size: 2rem;
-  color: ${props => props.theme.placeholder};
+  color: ${props => props.theme.black};
   cursor: pointer;
   &:hover,
   &:focus {
     border: 0.2rem solid ${props => props.theme.black};
   }
+  @media (min-width: 700px) {
+    margin: 1rem 0 0 3rem;
+  }
 `;
 
-export const RemoveCompanion = styled.span`
+export const RemoveCompanion = styled.button`
   height: 6rem;
   width: 6rem;
   position: absolute;
   bottom: -0.75rem;
-  right: 1rem;
+  right: -0.75rem;
   opacity: 0.5;
+  background: none;
+  border: none;
+  cursor: pointer;
   &:before,
   &:after {
     position: absolute;
     left: 28px;
-    top: 12px;
+    top: 13px;
     content: " ";
     height: 33px;
     width: 2px;
     background-color: ${props => props.theme.black};
+    border-radius: 0.2rem;
   }
   &:before {
     transform: rotate(45deg);
@@ -102,7 +117,7 @@ export const CustomErrorMessage = styled.span`
   font-weight: 500;
   border: 0.2rem solid transparent;
   border-radius: 0.2rem;
-  box-shadow: 0 0 0 0.5rem red;
+  box-shadow: 0 0 0 0.3rem red;
 `;
 
 export const Button = styled.button`

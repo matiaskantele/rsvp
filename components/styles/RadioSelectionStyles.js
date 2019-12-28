@@ -4,9 +4,9 @@ export const MenuGroup = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  &:first-of-type {
-    margin-bottom: 1rem;
-  }
+  /* & > label:last-of-type {
+    margin-top: 1rem;
+  } */
 
   [type="radio"] {
     position: absolute;
@@ -35,8 +35,12 @@ export const MenuImage = styled.div`
   width: 6rem;
   background: url(${props => props.src}) no-repeat center center;
   background-size: 90%;
+  @media (min-width: 700px) {
+    height: 6.5rem;
+    width: 6.5rem;
+  }
   @media (min-width: 1300px) {
-    height: 8rem;
-    width: 8rem;
+    height: 7rem;
+    width: 7rem;
   }
 `;

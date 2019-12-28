@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Input = styled.input`
-  height: 4.5rem;
+  height: 4.9rem;
   width: 100%;
   margin-top: ${props => (props.noLabel ? "1rem" : "0")};
   padding-left: 1rem;

@@ -28,7 +28,7 @@ const Logo = styled.div`
 const StyledHeader = styled.header`
   .bar {
     background-color: white;
-    border-bottom: 2px solid ${props => props.theme.black};
+    border-bottom: 0.2rem solid ${props => props.theme.black};
     display: grid;
     grid-template-columns: auto 1fr;
     justify-content: space-between;
