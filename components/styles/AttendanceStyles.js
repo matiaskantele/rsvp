@@ -19,7 +19,7 @@ export const Attendance = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
   & > button {
     position: relative;
     height: 5rem;

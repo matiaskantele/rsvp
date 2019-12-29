@@ -4,9 +4,6 @@ export const MenuGroup = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  /* & > label:last-of-type {
-    margin-top: 1rem;
-  } */
 
   [type="radio"] {
     position: absolute;
@@ -27,6 +24,10 @@ export const MenuGroup = styled.div`
   [type="radio"]:checked + div,
   [type="radio"]:focus + div {
     border: 0.2rem solid ${props => props.theme.black};
+  }
+
+  @media (min-width: 700px) {
+    width: 35%;
   }
 `;
 

@@ -33,6 +33,12 @@ export const Container = styled.div`
       margin-bottom: 3rem;
     }
   }
+  & > div > p {
+    line-height: 1.2;
+    margin: 1rem 2rem;
+    font-size: 1.7rem;
+    overflow-wrap: break-word;
+  }
 `;
 
 export const Image = styled.img`
