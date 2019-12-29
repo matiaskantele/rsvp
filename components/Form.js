@@ -28,7 +28,9 @@ import {
 const Section = props => {
   return (
     <>
-      <Label htmlFor={props.label}>{props.label}</Label>
+      <Label htmlFor={props.label}>
+        <h2>{props.label}</h2>
+      </Label>
       <SectionContainer>{props.children}</SectionContainer>
     </>
   );
@@ -170,7 +172,9 @@ const rsvpForm = ({ selected, attending, postSubmit }) => {
                   </Section>
                   <Section label={t("menu")}>
                     {additionalPerson && (
-                      <Label htmlFor="menu">{values.name || "..."}</Label>
+                      <Label htmlFor="menu">
+                        {values.name.split(" ")[0] || "..."}
+                      </Label>
                     )}
                     <RadioSelection
                       name="menu"
@@ -187,7 +191,7 @@ const rsvpForm = ({ selected, attending, postSubmit }) => {
                     />
                     <Hideable visible={additionalPerson}>
                       <Label htmlFor="companionMenu">
-                        {values.companionName || "..."}
+                        {values.companionName.split(" ")[0] || "..."}
                       </Label>
                       <RadioSelection
                         name="companionMenu"
@@ -203,7 +207,7 @@ const rsvpForm = ({ selected, attending, postSubmit }) => {
                   <Section label={t("dietaryRestrictions")}>
                     {additionalPerson && (
                       <Label htmlFor="dietaryRestrictions">
-                        {values.name || "..."}
+                        {values.name.split(" ")[0] || "..."}
                       </Label>
                     )}
                     <TextInput
@@ -212,9 +216,13 @@ const rsvpForm = ({ selected, attending, postSubmit }) => {
                       type="text"
                       placeholder={t("dietaryRestrictionsPlaceholder")}
                     />
+                    <ErrorMessage
+                      component={InputErrorMessage}
+                      name="dietaryRestrictions"
+                    />
                     <Hideable visible={additionalPerson}>
                       <Label htmlFor="companionDietaryRestrictions">
-                        {values.companionName || "..."}
+                        {values.companionName.split(" ")[0] || "..."}
                       </Label>
                       <TextInput
                         id="companionDietaryRestrictions"
@@ -249,6 +257,7 @@ const rsvpForm = ({ selected, attending, postSubmit }) => {
                       type="text"
                       placeholder={t("songsPlaceholder")}
                     />
+                    <ErrorMessage component={InputErrorMessage} name="songs" />
                   </Section>
                   <Section label={t("message")}>
                     <TextInput

@@ -17,6 +17,9 @@ export const Label = styled.label`
   display: block;
   margin-bottom: 1rem;
   font-size: 2rem;
+  & > h2 {
+    font-size: 2rem;
+  }
 `;
 
 export const SectionContainer = styled.div`
