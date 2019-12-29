@@ -44,7 +44,7 @@ const encode = data => {
 
 const rsvpForm = ({ selected, attending, postSubmit }) => {
   const [additionalPerson, setAdditionalPerson] = useState(false);
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const validationSchema = Yup.object().shape({
     name: Yup.string().required(" "),
@@ -246,11 +246,13 @@ const rsvpForm = ({ selected, attending, postSubmit }) => {
                       name="staying.departing"
                     />
                   </Section>
-                  <Section label={t("airportShuttleLabel")}>
-                    <Checkbox id="airportShuttle" name="shuttle">
-                      {t("needShuttle")}
-                    </Checkbox>
-                  </Section>
+                  <Hideable visible={i18n.language !== "bg"}>
+                    <Section label={t("airportShuttleLabel")}>
+                      <Checkbox id="airportShuttle" name="shuttle">
+                        {t("needShuttle")}
+                      </Checkbox>
+                    </Section>
+                  </Hideable>
                   <Section label={t("songs")}>
                     <TextInput
                       name="songs"
