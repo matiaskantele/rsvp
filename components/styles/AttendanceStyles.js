@@ -27,15 +27,9 @@ export const Attendance = styled.div`
     font-family: "Marck Script", cursive;
     font-size: 2.5rem;
     font-weight: 900;
-    border-top: 1px solid ${props => props.theme.lightgrey};
-    border-bottom: 1px solid ${props => props.theme.lightgrey};
+    background: transparent;
     cursor: pointer;
     transform: skew(-20deg);
-    &:focus,
-    &:hover {
-      border-top: 2px solid ${props => props.theme.black};
-      border-bottom: 2px solid ${props => props.theme.black};
-    }
     & > span {
       display: inline-block;
       transform: skew(20deg);
@@ -50,33 +44,47 @@ export const Attendance = styled.div`
 `;
 
 export const AttendButton = styled.button`
-  border-left: 1px solid ${props => props.theme.lightgrey};
-  border-right: 1px solid ${props => props.theme.lightgrey};
+  border: 2px solid
+    ${props =>
+      props.selected
+        ? props.attending
+          ? props.theme.black
+          : props.theme.lightgrey
+        : props.theme.lightgrey};
+  border-right: 2px solid
+    ${props =>
+      props.selected && props.attending
+        ? props.theme.black
+        : props.theme.lightgrey};
   width: ${props =>
     props.selected ? (props.attending ? "70%" : "30%") : "50%"};
-  background: ${props =>
-    props.selected ? (props.attending ? "#A5E9D4" : "none") : "none"};
   opacity: ${props =>
     props.selected ? (props.attending ? "1.0" : "0.5") : "1.0"};
   &:focus,
   &:hover {
-    border-left: 2px solid ${props => props.theme.black};
-    border-right: 2px solid ${props => props.theme.black};
+    border-width: 3px 2px;
+    border-style: solid;
+    border-color: ${props => props.theme.black};
   }
 `;
 
 export const DeclineButton = styled.button`
-  border-left: none;
-  border-right: 1px solid ${props => props.theme.lightgrey};
+  border: 2px solid
+    ${props =>
+      props.selected
+        ? !props.attending
+          ? props.theme.lightgrey
+          : props.theme.black
+        : props.theme.lightgrey};
+  border-left: ${props => !props.selected && "none"};
   width: ${props =>
     props.selected ? (props.attending ? "70%" : "30%") : "50%"};
-  background: ${props =>
-    props.selected ? (!props.attending ? "none" : "#FEB7C0") : "none"};
   opacity: ${props =>
     props.selected ? (props.attending ? "1.0" : "0.5") : "1.0"};
   &:focus,
   &:hover {
-    border-left: 2px solid ${props => props.theme.black};
-    border-right: 2px solid ${props => props.theme.black};
+    border-width: 3px 2px;
+    border-style: solid;
+    border-color: ${props => props.theme.black};
   }
 `;

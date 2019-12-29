@@ -12,7 +12,6 @@ import LoadingHeart from "./LoadingHeart";
 import {
   Form,
   SectionContainer,
-  AnimatedContainer,
   Label,
   InputErrorMessage,
   CompanionInputErrorMessage,
@@ -132,7 +131,7 @@ const rsvpForm = ({ selected, attending, postSubmit }) => {
       {({ values, setFieldValue, isSubmitting, handleSubmit }) => (
         <Form name="rsvp" data-netlify="true" onSubmit={handleSubmit}>
           {selected && (
-            <AnimatedContainer>
+            <>
               {attending ? (
                 <>
                   <Section
@@ -288,7 +287,7 @@ const rsvpForm = ({ selected, attending, postSubmit }) => {
               <Button type="submit" attending={attending}>
                 <span>{isSubmitting ? <LoadingHeart /> : t("submitRsvp")}</span>
               </Button>
-            </AnimatedContainer>
+            </>
           )}
         </Form>
       )}

@@ -37,10 +37,12 @@ export const LanguageButton = styled.button`
   background-position: center;
   background-size: cover;
   cursor: pointer;
-  opacity: 80%;
+  opacity: 60%;
   transform: skew(-20deg);
+  filter: grayscale(1);
   &:hover,
   &:focus {
+    filter: grayscale(0);
     opacity: 100%;
   }
   @media (min-width: 700px) {

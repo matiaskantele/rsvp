@@ -1,4 +1,4 @@
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 
 export const Form = styled.form`
   width: 100%;
@@ -23,27 +23,6 @@ export const SectionContainer = styled.div`
   }
 `;
 
-const puffIn = keyframes`
-  0% {
-    transform: scale(1.2);
-    transform-origin: 50% 0%;
-    opacity: 0;
-  }
-  100% {
-    transform: scale(1);
-    transform-origin: 50% 0%;
-    opacity: 1;
-  }
-`;
-
-export const AnimatedContainer = styled.div`
-  animation: ${puffIn} 0.7s linear ease-in-out both;
-  & > label {
-    font-size: 2rem;
-    font-weight: bold;
-  }
-`;
-
 export const CompanionButton = styled.button`
   position: relative;
   display: block;
@@ -53,12 +32,14 @@ export const CompanionButton = styled.button`
   border: 0.2rem solid ${props => props.theme.black};
   border-radius: 0.2rem;
   margin-top: 1rem;
-  font-size: 2rem;
+  font-size: 1.8rem;
   color: ${props => props.theme.black};
   cursor: pointer;
   &:hover,
   &:focus {
-    border: 0.2rem solid ${props => props.theme.black};
+    border-width: 3px 2px;
+    border-style: solid;
+    border-color: ${props => props.theme.black};
   }
 `;
 
@@ -197,7 +178,7 @@ export const Button = styled.button`
   background: none;
   height: 6rem;
   width: 25rem;
-  border: 0.2rem solid ${props => props.theme.lightgrey};
+  border: 0.2rem solid ${props => props.theme.black};
   border-radius: 0.2rem;
   margin: 2rem auto;
   font-size: 2rem;
@@ -205,12 +186,11 @@ export const Button = styled.button`
   cursor: pointer;
   &:hover,
   &:focus {
-    border: 0.2rem solid ${props => props.theme.black};
-    background-color: ${props => (props.attending ? "#A5E9D4" : "#FEB7C0")};
+    border-top: 0.3rem solid ${props => props.theme.black};
+    border-bottom: 0.3rem solid ${props => props.theme.black};
   }
   & > span {
     display: inline-block;
     transform: skew(20deg);
-    text-shadow: 2px 2px 5px white;
   }
 `;
