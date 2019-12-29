@@ -47,8 +47,10 @@ const StylingWrapper = styled.div`
 `;
 
 const DateRange = ({ staying, onSelect }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [focusedInput, setFocusedInput] = useState(null);
+
+  moment.locale(i18n.language);
 
   return (
     <StylingWrapper>
