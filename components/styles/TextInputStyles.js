@@ -9,6 +9,7 @@ export const Input = styled.input`
   border-radius: 0.2rem;
   font-size: 2rem;
   font-family: "Montserrat";
+  background-clip: padding-box;
   &::placeholder {
     color: ${props => props.theme.placeholder};
   }
@@ -24,6 +25,7 @@ export const TextArea = styled.textarea`
   padding: 1rem;
   font-size: 2rem;
   font-family: "Montserrat";
+  background-clip: padding-box;
   &::placeholder {
     color: ${props => props.theme.placeholder};
   }

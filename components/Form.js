@@ -272,21 +272,16 @@ const rsvpForm = ({ selected, attending, postSubmit }) => {
                 </>
               ) : (
                 <>
-                  <Section label={t("name")}>
+                  <Section label={t("declineName")}>
                     <TextInput
                       name="name"
                       type="text"
-                      placeholder={t("namePlaceholder")}
+                      placeholder={t("declineNamePlaceholder")}
                     />
                     <ErrorMessage component={InputErrorMessage} name="name" />
                   </Section>
                   <Section label={t("message")}>
-                    <TextInput
-                      name="message"
-                      type="textarea"
-                      rows="5"
-                      placeholder={t("messagePlaceholder")}
-                    />
+                    <TextInput name="message" type="textarea" rows="5" />
                   </Section>
                 </>
               )}

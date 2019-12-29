@@ -4,10 +4,10 @@ const NavStyles = styled.nav`
   & > ul {
     width: 100%;
     line-height: 2;
-    padding: 0;
+    padding: 0 1rem;
     display: flex;
     font-size: 1.5rem;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     border-top: 1px solid ${props => props.theme.lightgrey};
   }
@@ -16,7 +16,7 @@ const NavStyles = styled.nav`
   }
   & > ul > li > a {
     font-size: 1.4rem;
-    padding: 0 1.4rem;
+    padding: 0 0.8rem;
     display: flex;
     align-items: center;
     position: relative;
@@ -50,7 +50,8 @@ const NavStyles = styled.nav`
       transition: width 0.4s;
       transition-timing-function: cubic-bezier(1, -0.65, 0, 2.31);
       left: 50%;
-      margin-top: 1rem;
+      bottom: 0;
+      margin-bottom: 0.4rem;
     }
     &:hover,
     &:focus {
@@ -61,7 +62,7 @@ const NavStyles = styled.nav`
   }
   @media (min-width: 700px) {
     & > ul > li > a:after {
-      margin-top: 1.5rem;
+      margin-bottom: 1rem;
     }
   }
   @media (min-width: 1300px) {

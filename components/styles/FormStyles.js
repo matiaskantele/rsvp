@@ -99,7 +99,7 @@ export const InputErrorMessage = styled.span`
   top: 0;
   left: 0;
   width: 100%;
-  height: 4.5rem;
+  height: 4.9rem;
   pointer-events: none;
   color: red;
   font-size: 1.8rem;
@@ -139,6 +139,7 @@ export const MenuErrorMessage = styled.span`
   box-shadow: 0 0 0 0.3rem red;
   @media (min-width: 700px) {
     height: 6.5rem;
+    width: 35%;
   }
   @media (min-width: 1300px) {
     height: 7rem;
@@ -160,6 +161,7 @@ export const MenuErrorMessageWithCompanion = styled.span`
   box-shadow: 0 0 0 0.3rem red;
   @media (min-width: 700px) {
     height: 6.5rem;
+    width: 35%;
   }
   @media (min-width: 1300px) {
     height: 7rem;
@@ -182,6 +184,7 @@ export const CompanionMenuErrorMessage = styled.span`
   @media (min-width: 700px) {
     top: 13.5rem;
     height: 6.5rem;
+    width: 35%;
   }
   @media (min-width: 1300px) {
     top: 14rem;
