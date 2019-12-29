@@ -5,6 +5,7 @@ const Map = ({ className }) => (
     className={className}
     frameBorder="0"
     src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJDT2mdOPlpEARcj_KobIlCnU&key=AIzaSyAPM1cc0bHAfhVVDlVtBuPMwAcS7-fBdWc"
+    title="Topola Skies - Google Maps"
     allowFullScreen
   />
 );

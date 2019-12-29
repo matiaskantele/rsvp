@@ -1,29 +1,33 @@
 import styled from "styled-components";
 
-const NavStyles = styled.ul`
-  line-height: 2;
-  padding: 0;
-  display: flex;
-  justify-self: end;
-  font-size: 2rem;
-  align-items: center;
-  & > li {
+const NavStyles = styled.nav`
+  & > ul {
+    width: 100%;
+    line-height: 2;
+    padding: 0;
+    display: flex;
+    font-size: 1.5rem;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid ${props => props.theme.lightgrey};
+  }
+  & > ul > li {
     list-style: none;
   }
-  a {
-    padding: 1rem 3rem;
+  & > ul > li > a {
+    font-size: 1.4rem;
+    padding: 0 1.4rem;
     display: flex;
     align-items: center;
     position: relative;
     text-transform: uppercase;
     font-weight: 900;
-    font-size: 1em;
     background: none;
     border: 0;
     cursor: pointer;
-    @media (max-width: 700px) {
-      font-size: 14px;
-      padding: 0 14px;
+    @media (min-width: 700px) {
+      padding: 1rem 3rem;
+      font-size: 1.5rem;
     }
     &:before {
       content: "";
@@ -38,7 +42,7 @@ const NavStyles = styled.ul`
     }
     &:after {
       height: 2px;
-      background: red;
+      background: ${props => props.theme.black};
       content: "";
       width: 0;
       position: absolute;
@@ -46,21 +50,26 @@ const NavStyles = styled.ul`
       transition: width 0.4s;
       transition-timing-function: cubic-bezier(1, -0.65, 0, 2.31);
       left: 50%;
-      margin-top: 2rem;
+      margin-top: 1rem;
     }
     &:hover,
     &:focus {
-      outline: none;
       &:after {
-        width: calc(100% - 60px);
+        width: 4rem;
       }
     }
   }
-  @media (max-width: 1300px) {
-    border-top: 1px solid ${props => props.theme.lightgrey};
-    width: 100%;
-    justify-content: center;
-    font-size: 1.5rem;
+  @media (min-width: 700px) {
+    & > ul > li > a:after {
+      margin-top: 1.5rem;
+    }
+  }
+  @media (min-width: 1300px) {
+    & > ul {
+      justify-content: space-evenly;
+      font-size: 2rem;
+      border-top: none;
+    }
   }
 `;
 

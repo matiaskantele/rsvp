@@ -1,12 +1,27 @@
 import styled from "styled-components";
 
 export const LanguageSelectContainer = styled.div`
-  margin: 0 1rem;
-  padding: 0;
+  padding: 0 0 0 1.4rem;
   position: relative;
   display: flex;
   flex-direction: row;
   align-items: center;
+  height: 2.8rem;
+  @media (min-width: 700px) {
+    height: 5rem;
+    padding: 0.7rem 3rem;
+  }
+  &:before {
+    content: "";
+    width: 2px;
+    background: ${props => props.theme.lightgrey};
+    height: 100%;
+    left: 0;
+    position: absolute;
+    transform: skew(-20deg);
+    top: 0;
+    bottom: 0;
+  }
   & > button:first-child {
     margin-right: 0.5rem;
   }
