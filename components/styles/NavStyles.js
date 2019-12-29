@@ -6,6 +6,10 @@ const NavStyles = styled.ul`
   display: flex;
   justify-self: end;
   font-size: 2rem;
+  align-items: center;
+  & > li {
+    list-style: none;
+  }
   a {
     padding: 1rem 3rem;
     display: flex;

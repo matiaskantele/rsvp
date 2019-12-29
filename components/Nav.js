@@ -8,16 +8,24 @@ const Nav = () => {
   const { t } = useTranslation();
   return (
     <NavStyles>
-      <LanguageSelect />
-      <Link href="/">
-        <a>{t("home")}</a>
-      </Link>
-      <Link href="/info">
-        <a>{t("info")}</a>
-      </Link>
-      <Link href="/rsvp">
-        <a>{t("rsvp")}</a>
-      </Link>
+      <li>
+        <LanguageSelect />
+      </li>
+      <li>
+        <Link href="/">
+          <a>{t("home")}</a>
+        </Link>
+      </li>
+      <li>
+        <Link href="/info">
+          <a>{t("info")}</a>
+        </Link>
+      </li>
+      <li>
+        <Link href="/rsvp">
+          <a>{t("rsvp")}</a>
+        </Link>
+      </li>
     </NavStyles>
   );
 };

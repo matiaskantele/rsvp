@@ -14,8 +14,12 @@ const LanguageSelect = () => {
     <LanguageButton
       key={lang}
       role="link"
+      aria-label={`Language ${lang}`}
       image={`flag-${lang}.svg`}
-      onClick={() => i18n.changeLanguage(lang)}
+      onClick={() => {
+        i18n.changeLanguage(lang);
+        document.documentElement.setAttribute("lang", lang);
+      }}
     />
   ));
 

@@ -6,6 +6,11 @@ import "../public/empty.css";
 import Page from "../components/Page";
 
 class AppInit extends App {
+  componentDidMount() {
+    const lang = window.localStorage.getItem("i18nextLng") || "en";
+    document.documentElement.setAttribute("lang", lang);
+  }
+
   render() {
     const {
       Component,

@@ -16,7 +16,7 @@ export const LanguageSelectContainer = styled.div`
 `;
 
 export const LanguageButton = styled.button`
-  height: 100%;
+  height: 2.6rem;
   width: 4rem;
   background-image: ${props => `url(${props.image})`};
   background-position: center;
