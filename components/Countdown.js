@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 import { CountdownContainer } from "./styles/CountdownStyles";
 
@@ -20,6 +21,7 @@ const calculateTimeLeft = () => {
 
 const Countdown = () => {
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
+  const { t } = useTranslation();
 
   useEffect(() => {
     const timeout = setTimeout(() => setTimeLeft(calculateTimeLeft()), 1000);
@@ -35,7 +37,7 @@ const Countdown = () => {
 
     CountdownComponents.push(
       <span key={interval}>
-        {timeLeft[interval]} {interval}{" "}
+        {timeLeft[interval]} {t(interval)}{" "}
       </span>
     );
   });
