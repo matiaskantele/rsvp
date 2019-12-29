@@ -2,6 +2,7 @@ import { useTranslation } from "react-i18next";
 
 import Map from "../components/Map";
 import { Container, Image } from "../components/styles/InfoStyles";
+import { Hideable } from "../components/styles/UtilStyles";
 
 const Section = props => (
   <Container>
@@ -14,7 +15,7 @@ const Section = props => (
 );
 
 const Info = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   return (
     <>
@@ -34,7 +35,7 @@ const Info = () => {
         <p>{t("resortPhone")}</p>
         <p>
           <a
-            href="https://www.topolaskies.com/en/"
+            href={t("resortWebsite")}
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -52,10 +53,12 @@ const Info = () => {
       <Section title={t("arrival")} image="arrival.svg">
         <h2>{t("byAir")}</h2>
         <p>{t("flightRecommendation")}</p>
-        <p>
-          {t("fromVarna")}
-          <strong>{t("pleaseMark")}</strong>.
-        </p>
+        <Hideable visible={i18n.language !== "bg"}>
+          <p>
+            {t("fromVarna")}
+            <strong>{t("pleaseMark")}</strong>.
+          </p>
+        </Hideable>
         <h2>{t("byCar")}</h2>
         <p>{t("freeParking")}</p>
       </Section>
