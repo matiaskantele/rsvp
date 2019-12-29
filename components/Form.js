@@ -11,7 +11,6 @@ import Checkbox from "./Checkbox";
 import LoadingHeart from "./LoadingHeart";
 import {
   Form,
-  Hideable,
   SectionContainer,
   AnimatedContainer,
   Label,
@@ -24,6 +23,7 @@ import {
   RemoveCompanion,
   Button,
 } from "./styles/FormStyles";
+import { Hideable } from "./styles/UtilStyles";
 
 const Section = props => {
   return (

@@ -6,13 +6,6 @@ export const Form = styled.form`
   flex-direction: column;
 `;
 
-export const Hideable = styled.div`
-  display: ${props => (props.visible ? "block" : "none")};
-  & > label {
-    margin-top: 1rem;
-  }
-`;
-
 export const Label = styled.label`
   display: block;
   margin-bottom: 1rem;
@@ -55,8 +48,8 @@ export const CompanionButton = styled.button`
   position: relative;
   display: block;
   background: none;
-  height: 4rem;
-  width: 50%;
+  height: 4.9rem;
+  width: 60%;
   border: 0.2rem solid ${props => props.theme.black};
   border-radius: 0.2rem;
   margin-top: 1rem;
