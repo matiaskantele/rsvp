@@ -56,7 +56,7 @@ const Info = () => {
         <Hideable visible={i18n.language !== "bg"}>
           <p>
             {t("fromVarna")}
-            <strong>{t("pleaseMark")}</strong>.
+            <strong>{t("pleaseMarkFlight")}</strong>.
           </p>
         </Hideable>
         <h2>{t("byCar")}</h2>
