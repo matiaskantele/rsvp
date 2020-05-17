@@ -1,0 +1,20 @@
+import styled from 'styled-components';
+
+const Map: React.FC = () => (
+  <iframe
+    frameBorder="0"
+    src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJDT2mdOPlpEARcj_KobIlCnU&key=AIzaSyAPM1cc0bHAfhVVDlVtBuPMwAcS7-fBdWc"
+    title="Topola Skies - Google Maps"
+    allowFullScreen
+  />
+);
+
+const StyledMap: React.FC = styled(Map)`
+  display: block;
+  width: calc(100% - 4rem);
+  height: 40vh;
+  border: 1px solid ${(props): string => props.theme.lightgrey};
+  margin: auto;
+`;
+
+export default StyledMap;
