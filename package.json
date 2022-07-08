@@ -14,7 +14,7 @@
     "formik": "^2.1.4",
     "i18next": "^19.4.4",
     "i18next-browser-languagedetector": "^4.1.1",
-    "moment": "^2.25.3",
+    "moment": "^2.29.4",
     "next": "9.4.1",
     "prop-types": "^15.7.2",
     "react": "16.13.1",
