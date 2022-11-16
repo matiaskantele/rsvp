@@ -15,7 +15,7 @@
     "i18next": "^19.4.4",
     "i18next-browser-languagedetector": "^4.1.1",
     "moment": "^2.25.3",
-    "next": "9.4.1",
+    "next": "13.0.3",
     "prop-types": "^15.7.2",
     "react": "16.13.1",
     "react-dates": "^21.8.0",
